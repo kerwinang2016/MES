@@ -1,0 +1,54 @@
+/*
+	© 2017 NetSuite Inc.
+	User may not copy, modify, distribute, or re-bundle or otherwise make available this code;
+	provided, however, if you are an authorized user with a NetSuite account or log-in, you
+	may use this code subject to the terms that govern your access and use.
+*/
+label.required:after, span.required:after {
+    content: ' *';
+    color: #EE001C;
+    font-weight: normal;
+    font-family: Verdana,Tahoma,Arial,sans-serif;
+    font-size: 12px;
+}
+.weboption label{
+    font-size: 1.1em;
+    display: inline-block;
+    font-weight: normal;
+}
+.weboption {
+    max-width: 590px;
+    padding: 0;
+    margin: 8px 0 20px 0;
+    border: none;
+}
+.product-details-weboptions-content p.required {
+    position: relative;
+    color: #ee001c;
+    font-size: 0.8333em;
+    float:right;
+}
+.product-custom-option{
+  width: 100%;
+}
+.weboption-description{
+  margin-bottom: 10px;
+}
+.weboption .weboption-name{
+  font-size: 1.2em;
+}
+.weboption-tooltip{
+  vertical-align:middle;
+}
+.validation-advice{
+  clear: both;
+  font-size: 0.9166em;
+  line-height: 1em;
+  color: #ee001c;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.validation-failed {
+    border: 1px solid #ee001c!important;
+    background: #fff!important;
+}

@@ -1,0 +1,11 @@
+{
+    "gulp": {
+        "javascript": [
+            "JavaScript/*"
+        ]
+    },
+    "overrides":{
+      "suitecommerce/ProductViews@1.0.2/JavaScript/ProductViews.Price.View.js":"JavaScript/ProductViews.Price.View.js",
+      "suitecommerce/ProductViews@1.0.2/Templates/product_views_price.tpl":"Templates/product_views_price.tpl"
+    }
+}
