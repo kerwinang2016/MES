@@ -132,7 +132,8 @@ define(
 			selected_value = _.extend({}, selected_value, _.findWhere(values, {internalid: selected_value.internalid}) || {});
 
 			selected_value.label = selected_value.label || selected_value.internalid;
-
+			selected_value.label =	selected_value.label.replace( /&lt;/g, '<' ).replace( /&gt;/g, '>' )
+			console.log(selected_value.label)
 			// @class Transaction.Line.Views.Option.View.Context
 			return {
 				// @property {Transaction.Line.Option.Model} model
