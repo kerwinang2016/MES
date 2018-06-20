@@ -45,10 +45,16 @@ define(
 			var priceOptionJSON = _.find(productOptions,function(model){
 				return model.get('cartOptionId') == "custcol_custom_options_json";
 			})
+			var priceOptionJSON1 = _.find(productOptions,function(model){
+				return model.get('cartOptionId') == "custcol_custom_options_json1";
+			})
 			this.model.showOption = this.model.get('custrecord_wo_donotshowbydefault') == 'T'?false:true;
 
-			if(priceOptionJSON.get('value') && priceOptionJSON.get('value').internalid){
-				var oj = JSON.parse(priceOptionJSON.get('value').internalid)
+			if(priceOptionJSON && priceOptionJSON.get('value') && priceOptionJSON.get('value').internalid){
+				var oj = priceOptionJSON.get('value').internalid
+				if(priceOptionJSON1)
+					oj += priceOptionJSON1.get('value').internalid
+				oj = JSON.parse(oj);
 				if(oj.length>0){
 					for(var i=0;i<oj.length;i++){
 
@@ -111,6 +117,7 @@ define(
 					}else{
 						jsontext.push({
 							id:$(this).data().option,
+							shipoption:$(this).data().shipping,
 							selection:[{
 								option:$(this).data().option,
 								value:sel_id,
@@ -151,6 +158,7 @@ define(
 					else{
 						jsontext.push({
 							id:$(this).data().option,
+							shipoption:$(this).data().shipping,
 							selection:[{
 								option:$(this).data().option,
 								value:$(this).data().selection,
@@ -167,8 +175,10 @@ define(
 	, computeWebsiteOptions: function computeWebsiteOptions(){
 		var amount = 0;
 		var selectrequired = $('.weboption select');
+
 		selectrequired.each(function(index){
-			if($(this).val() != ''){
+			if($(this).data().shipping == 'T'){}
+			else if($(this).val() != ''){
 				var sel_id = $(this).val()
 				var price = $(this.selectedOptions).data().price;
 				if(price){
@@ -178,13 +188,16 @@ define(
 		});
 		var ulrequired = $('.weboption ul');
 		ulrequired.each(function(index){
-			var a = $(this).find('.product-custom-option:checked');
-			if(a.length>0){
-				for(var i=0;i<a.length;i++){
-					var price = $(a[i]).data().price;
-					if(price){
-						amount+= parseFloat(price);
-					}
+			if($(this).data().shipping == 'T'){}
+			else{
+				var a = $(this).find('.product-custom-option:checked');
+				if(a.length>0){
+					for(var i=0;i<a.length;i++){
+						var price = $(a[i]).data().price;
+						if(price){
+							amount+= parseFloat(price);
+						}
+				}
 			}
 		}
 		});
@@ -422,13 +435,24 @@ define(
 		var priceOptionJSON = _.find(productOptions,function(model){
 			return model.get('cartOptionId') == 'custcol_custom_options_json';
 		});
-		priceOptionJSON.set('value',{label:'Options Code',internalid:JSON.stringify(optionsvalues.jsontext)});
+		var priceOptionJSON1 = _.find(productOptions,function(model){
+			return model.get('cartOptionId') == 'custcol_custom_options_json1';
+		});
+		if(JSON.stringify(optionsvalues.jsontext).length < 3999)
+			priceOptionJSON.set('value',{label:'Options Code',internalid:JSON.stringify(optionsvalues.jsontext)});
+		else{
+			var length = 3999;
+			var chunkstr = JSON.stringify(optionsvalues.jsontext).match(new RegExp('.{1,' + length + '}', 'g'));
+			priceOptionJSON.set('value',{label:'Options Code',internalid:chunkstr[0]});
+			priceOptionJSON1.set('value',{label:'Options Code',internalid:chunkstr[1]});
+		}
 
 		if(selectiontext != ''){
-			var selectedTextModel = _.find(productOptions,function(model){
-				return model.get('cartOptionId') == 'custcol_cart_item_custom_options';
-			});
-			selectedTextModel.set('value',{label:'Selected Options', internalid: selectiontext})
+			// var selectedTextModel = _.find(productOptions,function(model){
+			// 	return model.get('cartOptionId') == 'custcol_cart_item_custom_options';
+			// });
+			// selectedTextModel.set('value',{label:'Selected Options', internalid: selectiontext})
+			//productModel.set('selectedtext', selectiontext)
 		}
 		productModel.trigger('change')
 	}
@@ -459,6 +483,7 @@ define(
 				, isoptionselected : isoptionselected
 				, text: this.model.text
 				, showOption: this.model.showOption
+				, custrecord_is_shipping_option: this.model.get('custrecord_is_shipping_option')
 			};
 			//@class ItemViews.RelatedItem.View
 		}

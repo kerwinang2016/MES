@@ -10,14 +10,14 @@ define(
 	'ProductViews.Option.View'
 ,	[
 		'SC.Configuration'
-
+		,	'ProductDetails.WebOptions.Collection'
 	,	'Backbone'
 	,	'underscore'
 	,	'bootstrap-datepicker'
 	]
 ,	function (
 		Configuration
-
+		,	WebOptionsCollection
 	,	Backbone
 	,	_
 	)
@@ -74,12 +74,24 @@ define(
 
 			this.options.templateName = this.options.templateName || 'selector';
 			this.template =	this.config.templates[this.options.templateName];
+			// console.log('productViews.options.view');
+			// console.log(this)
+			// var	collection = new WebOptionsCollection({itemsIds: this.options.itemsIds})
+			// if(this.model.get('cartOptionId') == "custcol_custom_options_json"){
+			// 		//We need to change the value just to simplify things
+			// 		var currenttext = this.model.get('value').label;
+			// 		var productOptions = this.options.item.get('options');
+			// 		var priceOptionJSON = _.find(productOptions,function(model){
+			// 			return model.get('cartOptionId') == "custcol_custom_options_json1";
+			// 		});
+			// }
 		}
 
 		//@method getContext
 		//@returns {ProductViews.Option.View.Context}
 	,	getContext: function()
 		{
+
 			var self = this
 			,	selected_value = this.model.get('value') || {}
 			,	values = _.map(this.model.get('values'), function (value)

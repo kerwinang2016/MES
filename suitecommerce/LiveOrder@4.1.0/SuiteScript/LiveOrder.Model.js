@@ -23,6 +23,8 @@ define(
 	,	'ExternalPayment.Model'
 	,	'underscore'
 	,	'CustomFields.Utils'
+	,	'ProductDetails.WebOptions.Model'
+	, 'ProductDetails.WebSelections.Model'
 	]
 ,	function (
 		SCModel
@@ -35,6 +37,8 @@ define(
 	,	ExternalPayment
 	,	_
 	,	CustomFieldsUtils
+	, WebOptionsModel
+	, WebOptionsSelections
 	)
 {
 	'use strict';
@@ -111,7 +115,7 @@ define(
 			else
 			{
 				// @property {Array<OrderShipMethod>} shipmethods
-				result.shipmethods = this.getShipMethods(order_fields);
+				result.shipmethods = this.getShipMethods(order_fields, result);
 				// @property {OrderShipMethod} shipmethod
 				result.shipmethod = order_fields.shipmethod ? order_fields.shipmethod.shipmethod : null;
 			}
@@ -315,7 +319,6 @@ define(
 			,	joint = ~continue_url.indexOf('?') ? '&' : '?';
 
 			continue_url = continue_url + joint + 'paypal=DONE&fragment=' + request.getParameter('next_step');
-			nlapiLogExecution('debug','ModelsInit',JSON.stringify(ModelsInit));
 			ModelsInit.session.proceedToCheckout({
 				cancelurl: touchpoints.viewcart
 			,	continueurl: continue_url
@@ -334,7 +337,6 @@ define(
 			,	joint = ~continue_url.indexOf('?') ? '&' : '?';
 
 			continue_url = continue_url + joint + 'paypal=DONE';
-			nlapiLogExecution('debug','ModelsInit',ModelsInit);
 			ModelsInit.session.proceedToCheckout({
 				cancelurl: touchpoints.viewcart
 			,	continueurl: continue_url
@@ -582,7 +584,6 @@ define(
 
 			_.each(lines_data, function (line_data)
 			{
-				nlapiLogExecution('debug','linedata',JSON.stringify(line_data.options))
 				var item = {
 						internalid: line_data.item.internalid.toString()
 					,	quantity:  _.isNumber(line_data.quantity) ? parseInt(line_data.quantity, 10) : 1
@@ -599,9 +600,7 @@ define(
 
 				items.push(item);
 			});
-			nlapiLogExecution('debug','BeforeAddItems', JSON.stringify(items));
 			var lines_ids = ModelsInit.order.addItems(items)
-			nlapiLogExecution('debug','AfterAddItems')
 			var	latest_addition = _.last(lines_ids).orderitemid
 			// Stores the current order
 			,	lines_sort = this.getLinesSort();
@@ -950,22 +949,127 @@ define(
 
 			return multishipmethods;
 		}
+	, generateShippingData: function generateShippingData(line, shippingdata){
+		var amount = 0;
+		var custcol_shippingcategory = line.item.custitem_shippingcategory;
+		if(custcol_shippingcategory == 'Free Shipping')
+			amount = 0;
+		else if(custcol_shippingcategory == 'Really Flat')
+			amount = parseFloat(line.item.custitem_shippingrate);
+		else //if(custcol_shippingcategory == 'Flat Per Item Quantity')
+			amount = parseFloat(line.quantity) * parseFloat(parseFloat(line.item.custitem_shippingrate));
 
+			var found = _.find(shippingdata,function(d){
+				return d.id == line.item.internalid;
+			});
+		if(found && custcol_shippingcategory == 'Really Flat'){}
+		else{
+			shippingdata.push({
+				id:line.item.internalid,
+				rate: parseFloat(line.item.custitem_shippingrate),
+				vendor: line.item.custitem_shippingvendor,
+				category: custcol_shippingcategory,
+				amount: amount,
+				condition: line.item.custitem_shippingbrandcondition
+			});
+		}
+	}
+	, calculateShippingAmount: function calculateShippingAmount(shippingdata){
+		var largershippingdata = [], vendorCondition = [], shippingamount = 0;
+		for(var i=0; i<shippingdata.length; i++){
+			if(shippingdata[i].condition == 'Larger Shipping'){
+				if(vendorCondition.indexOf(shippingdata[i].vendor) == -1)
+					vendorCondition.push(shippingdata[i].vendor);
+			}
+		}
+		for(var i=0; i<vendorCondition.length; i++){
+			var v = _.filter(shippingdata,function(data){
+				return data.vendor == vendorCondition[i];
+			});
+			//Now Calculate the Shipping
+			if(v.length == 1){
+				shippingamount = parseFloat(shippingamount) + parseFloat(v[0].amount);
+			}else{
+				//find the one that has larger shipping
+				v.sort(function(a,b){
+					return (parseFloat(a.amount) === parseFloat(b.amount) )? 0 : parseFloat(a.amount)>parseFloat(b.amount)? -1 : 1;
+				});
+				shippingamount = parseFloat(shippingamount) + parseFloat(v[0].amount);
+			}
+		}
+		//Others Sum The total
+		var u = _.filter(shippingdata,function(data){
+			return vendorCondition.indexOf(data.vendor) == -1;
+		});
+		if(u && u.length>0){
+			for(var i=0;i<u.length; i++){
+				shippingamount = parseFloat(shippingamount) + parseFloat(u[i].amount);
+			}
+		}
+		return shippingamount;
+	}
 		// @method getShipMethods
 		// @param {Array<String>} order_fields
 		// @returns {Array<OrderShipMethod>}
-	,	getShipMethods: function getShipMethods (order_fields)
+	,	getShipMethods: function getShipMethods (order_fields, result)
 		{
+			var self = this;
 			var shipmethods = _.map(order_fields.shipmethods, function (shipmethod)
 			{
-				var rate = Utils.toCurrency(shipmethod.rate.replace( /^\D+/g, '')) || 0;
+				var shippingamount = 0;
+				var shippingdata = [];
+
+				if(shipmethod.shipmethod == '46171'){
+
+					_.each(order_fields.items,function(line){
+						//var itemoptions = JSON.parse(line.options)
+						var custcol_custom_options_json = _.find(line.options,function(d){return d.id == "CUSTCOL_CUSTOM_OPTIONS_JSON";});
+						var custcol_custom_options_json1 = _.find(line.options,function(d){return d.id == "CUSTCOL_CUSTOM_OPTIONS_JSON1";});
+						if(!custcol_custom_options_json1)
+							custcol_custom_options_json1 = {value:""};
+						if(!custcol_custom_options_json)
+							custcol_custom_options_json = {value:""};
+						if(custcol_custom_options_json){
+							var jsonOptions = JSON.parse(custcol_custom_options_json.value + custcol_custom_options_json1.value);
+
+							var options = _.filter(jsonOptions,function(op){
+								return op.shipoption == 'T';
+							});
+
+							if(options && options.length>0){
+								for(var j=0;j<options.length;j++){
+									for(var k=0;k<options[j].selection.length;k++){
+										shippingamount += (parseFloat(line.quantity) * parseFloat(options[j].selection[k].price));
+									}
+								}
+							}
+						}
+					});
+					_.each(result.lines, function(line){
+							self.generateShippingData(line, shippingdata);
+					});
+					shippingamount = parseFloat(shippingamount) + parseFloat(self.calculateShippingAmount(shippingdata));
+					var tax = 0;
+					order_fields.summary.shippingcost = shippingamount;
+					order_fields.summary.shippingcost_formatted = Utils.formatCurrency(shippingamount);
+					order_fields.summary.taxonshipping = tax;
+					order_fields.summary.taxonshipping_formatted = Utils.formatCurrency(tax);
+					order_fields.summary.taxtotal = parseFloat(order_fields.summary.totalcombinedtaxes) + parseFloat(tax);
+					order_fields.summary.taxtotal_formatted = Utils.formatCurrency(order_fields.summary.taxtotal);
+					order_fields.summary.total = parseFloat(order_fields.summary.subtotal)+ parseFloat(shippingamount) + parseFloat(tax) + parseFloat(order_fields.summary.taxtotal);
+					order_fields.summary.total_formatted = Utils.formatCurrency(order_fields.summary.total);
+				}
+				else{
+					shippingamount = Utils.toCurrency(shipmethod.rate.replace( /^\D+/g, '')) || 0;
+				}
+				var rate = shippingamount;
 
 				return {
 					internalid: shipmethod.shipmethod
 				,	name: shipmethod.name
 				,	shipcarrier: shipmethod.shipcarrier
 				,	rate: rate
-				,	rate_formatted: shipmethod.rate
+				,	rate_formatted: parseFloat(rate) == 0?'Free':Utils.formatCurrency(rate)
 				};
 			});
 
@@ -1159,7 +1263,6 @@ define(
 
 				_.each(order_fields.items, function (original_line)
 				{
-					nlapiLogExecution('debug','GETLINES ORDERLINE', JSON.stringify(original_line));
 					// Total may be 0
 					var	total = (original_line.promotionamount) ? Utils.toCurrency(original_line.promotionamount) : Utils.toCurrency(original_line.amount)
 					,	discount = Utils.toCurrency(original_line.promotiondiscount) || 0
@@ -1256,11 +1359,64 @@ define(
 					}
 					else
 					{
+						var itemid = line.item.internalid;
 						line.rate_formatted = Utils.formatCurrency(line.rate);
 						line.amount_formatted = Utils.formatCurrency(line.amount);
 						line.tax_amount_formatted = Utils.formatCurrency(line.tax_amount);
 						line.discount_formatted = Utils.formatCurrency(line.discount);
 						line.total_formatted = Utils.formatCurrency(line.total);
+						var options = WebOptionsModel.get(itemid, null);
+						var selections = WebOptionsSelections.search(itemid,null);
+						var selectedoptionstr = "";
+						var textwithoutprice = "";
+						nlapiLogExecution('debug','op',JSON.stringify(line.item));
+						// _.each(line.item.options,function(op){
+						// 	nlapiLogExecution('debug','op',op.cartOptionId);
+						// });
+						var option0 = _.find(line.options,function(lineop){
+							//Kerwin
+							return lineop.cartOptionId == 'custcol_custom_options_json';
+						});
+						var option1 = _.find(line.options,function(lineop){
+							//Kerwin
+							return lineop.cartOptionId == 'custcol_custom_options_json1';
+						});
+						if(option0){
+							selectedoptionstr = option0.value.label;
+							if(option1){
+								selectedoptionstr += option1.value.label;
+							}
+							var jsontext = JSON.parse(selectedoptionstr);
+							//We need to create an object that will push this in an Array
+							for(var i=0;i<jsontext.length;i++){
+								var selectedoption = _.find(options,function(option){
+									return option.internalid == jsontext[i].id;
+								});
+								if(selectedoption){
+										if(!jsontext[i].text){
+											textwithoutprice += ""+selectedoption.name + "<br/>";
+											for(var j=0; j< jsontext[i].selection.length; j++){
+												var selected = _.find(selections,function(selection){
+													return selection.internalid == jsontext[i].selection[j].value;
+												});
+
+												if(selected){
+													textwithoutprice += "  " +selected.name;
+													if(selected.custrecord_wis_sku){
+														textwithoutprice += "("+selected.custrecord_wis_sku+")";
+													}
+													textwithoutprice += "<br/><br/>";
+												}
+											}
+										}
+										else{
+											textwithoutprice += ""+selectedoption.name + "<br/>  " +jsontext[i].text + "<br/><br/>";
+										}
+									}
+							}
+							line.selectedoptionsstr = '<p>'+textwithoutprice+'</p>';
+						}
+
 					}
 				});
 
@@ -1313,7 +1469,6 @@ define(
 	,	parseLineOptionsToCommerceAPI: function parseLineOptionsToCommerceAPI (options)
 		{
 			var result = {};
-			nlapiLogExecution('debug','PARSING LINE OP', JSON.stringify(options	))
 			_.each(options || [], function (option)
 			{
 				if (option && option.value && option.cartOptionId)
@@ -1523,8 +1678,8 @@ define(
 						{
 							return address.internalid === data.shipaddress;
 						});
-
 						address && ModelsInit.order.estimateShippingCost(address);
+
 					}
 				}
 				else if (this.isSecure)

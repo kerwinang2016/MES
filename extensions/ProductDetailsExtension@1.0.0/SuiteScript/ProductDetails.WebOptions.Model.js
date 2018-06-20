@@ -65,6 +65,7 @@ define(
 			columns.push(new nlobjSearchColumn('name'));
 			columns.push(new nlobjSearchColumn('internalid'));
 			columns.push(new nlobjSearchColumn('custrecord_wo_donotshowbydefault'));
+			columns.push(new nlobjSearchColumn('custrecord_is_shipping_option'));
 			var order = new nlobjSearchColumn('custrecord_wo_order')
 			order.setSort()
 			columns.push(order);
@@ -85,6 +86,49 @@ define(
 						}
 						recorddata.selections = WebSelections.search(null,res[i].getValue('internalid'))
 						recorddata.filters = WebFilters.search(null,res[i].getValue('internalid'))
+						websiteoptions.push(recorddata);
+					}
+					searchid+=1000;
+				}
+			}while(res && res.length == 1000);
+
+			return websiteoptions;
+		}
+	,	get: function (id, internalid)
+		{
+			this.verifySession();
+			var websiteoptions = [], websiteselections = [], websitefilters = [];
+			var filters = [], columns = [], search = null, res = null, cols = null, searchid = 0, resultSet = null;
+			filters.push(new nlobjSearchFilter('isinactive',null,'is','F'));
+			if(internalid)
+			filters.push(new nlobjSearchFilter('internalid',null,'anyof',internalid));
+			if(id)
+			filters.push(new nlobjSearchFilter('custrecord_wo_itemrelated',null,'anyof',id));
+			columns.push(new nlobjSearchColumn('custrecord_wo_required'));
+			columns.push(new nlobjSearchColumn('custrecord_wo_inputtype'));
+			columns.push(new nlobjSearchColumn('custrecord_wo_description'));
+			columns.push(new nlobjSearchColumn('name'));
+			columns.push(new nlobjSearchColumn('internalid'));
+			columns.push(new nlobjSearchColumn('custrecord_wo_donotshowbydefault'));
+			columns.push(new nlobjSearchColumn('custrecord_is_shipping_option'));
+			var order = new nlobjSearchColumn('custrecord_wo_order')
+			order.setSort()
+			columns.push(order);
+			search = nlapiCreateSearch('customrecord_website_options',filters,columns);
+			resultSet = search.runSearch();
+			do{
+				res = resultSet.getResults(searchid,searchid+1000);
+				if(res && res.length > 0){
+					if(!cols)
+						cols = res[0].getAllColumns();
+					for(var i=0; i<res.length; i++){
+						var recorddata = {};
+						for(var j=0; j<cols.length; j++){
+							var jointext= cols[j].join?cols[j].join+"_":'';
+							recorddata[jointext+cols[j].name] = res[i].getValue(cols[j]);
+							if(res[i].getText(cols[j]))
+							recorddata[jointext+cols[j].name+"text"] = res[i].getText(cols[j]);
+						}
 						websiteoptions.push(recorddata);
 					}
 					searchid+=1000;

@@ -21,9 +21,9 @@
 		<div class="weboption-selections">
 			{{#ifEquals custrecord_wo_inputtypetext 'multipleselect'}}
 				{{#if custrecord_wo_required}}
-					<ul class="required-entry">
+					<ul class="required-entry" data-shipping="{{custrecord_is_shipping_option}}">
 				{{else}}
-					<ul >
+					<ul data-shipping="{{custrecord_is_shipping_option}}">
 				{{/if}}
 				{{#each selections}}
 					<li>
@@ -51,7 +51,7 @@
 				{{/if}}
 			{{else ifEquals custrecord_wo_inputtypetext 'radiobutton'}}
 				{{#if custrecord_wo_required}}
-					<ul class="required-entry">
+					<ul class="required-entry" data-shipping="{{custrecord_is_shipping_option}}">
 					{{#each selections}}
 						<li>
 							<input {{#if selected }} checked {{/if}} data-selection="{{internalid}}" data-sku='{{custrecord_wis_sku}}' data-option="{{custrecord_wis_relatedwebsiteoption}}" class="product-custom-option" type="radio" name="options_{{custrecord_wis_relatedwebsiteoption}}_{{internalid}}" value="{{internalid}}"  data-price="{{custrecord_wis_price}}"> {{name}}
@@ -64,7 +64,7 @@
 					{{/each}}
 					</ul>
 				{{else}}
-					<ul>
+					<ul data-shipping="{{custrecord_is_shipping_option}}">
 					{{#each selections}}
 						<li>
 							<input {{#if selected }} checked {{/if}} data-selection="{{internalid}}" data-option="{{custrecord_wis_relatedwebsiteoption}}" class="product-custom-option" type="radio" name="options_{{custrecord_wis_relatedwebsiteoption}}_{{internalid}}" value="{{internalid}}"  data-price="{{custrecord_wis_price}}"> {{name}}
@@ -86,9 +86,9 @@
 						{{/if}}
 					{{/each}}
 					{{#if custrecord_wo_required}}
-						<select data-option="{{internalid}}" name="options_{{internalid}}" id="option_{{internalid}}" class="required-entry product-custom-option" title="">
+						<select data-shipping="{{custrecord_is_shipping_option}}" data-option="{{internalid}}" name="options_{{internalid}}" id="option_{{internalid}}" class="required-entry product-custom-option" title="">
 					{{else}}
-						<select data-option="{{internalid}}" name="options_{{internalid}}" id="option_{{internalid}}" class="product-custom-option" title="">
+						<select data-shipping="{{custrecord_is_shipping_option}}" data-option="{{internalid}}" name="options_{{internalid}}" id="option_{{internalid}}" class="product-custom-option" title="">
 					{{/if}}
 						<option value="">-- Please Select --</option>
 					{{#each selections}}
@@ -115,37 +115,3 @@
 		</div>
 		{{/if}}
 </div>
-
-{{!----
-Use the following context variables when customizing this template:
-
-	itemURL (String)
-	thumbnail (Object)
-	thumbnail.url (String)
-	thumbnail.altimagetext (String)
-	sku (String)
-	model (Object)
-	model.itemsIds (Number)
-	model.options (Array)
-	model._matrixParent (Object)
-	model._matrixParent.options (Array)
-	model._url (String)
-	model._name (String)
-	model._thumbnail (Object)
-	model._thumbnail.url (String)
-	model._thumbnail.altimagetext (String)
-	model._sku (String)
-	model._rating (Number)
-	model._ratingsCount (Number)
-	model._matrixChilds (Array)
-	model._inStockMessage (String)
-	model._showInStockMessage (Boolean)
-	model._showStockDescription (Boolean)
-	model._stockDescriptionClass (String)
-	model._quantityavailableforstorepickup_detail (Array)
-	model._showQuantityAvailable (Boolean)
-	showRating (Boolean)
-	itemName (String)
-	itemId (Number)
-
-----}}

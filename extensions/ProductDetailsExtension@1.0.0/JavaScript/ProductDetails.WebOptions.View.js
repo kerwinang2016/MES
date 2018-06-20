@@ -71,8 +71,7 @@ define(
 			{
 				//layout.once('afterAppendView', self.loadWebOptions, self);
 				layout.currentView && layout.currentView.once('afterCompositeViewRender', self.loadWebOptions, self);
-			}	
-
+			}
 		}
 
 	,	loadWebOptions: function loadWebOptions ()

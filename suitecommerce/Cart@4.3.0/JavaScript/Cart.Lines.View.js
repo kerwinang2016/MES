@@ -123,7 +123,7 @@ define('Cart.Lines.View'
 	,	getContext: function ()
 		{
 			var item = this.model.get('item');
-
+			console.log(this.model)
 			//@class Transaction.Line.Views.Actionable.View.Context
 			return {
 					//@property {OrderLine.Model|Transaction.Line.Model} line
@@ -154,6 +154,7 @@ define('Cart.Lines.View'
 				,	generalClass: this.options.generalClass
 					// @property {ImageContainer} thumbnail
 				,	thumbnail: this.model.getThumbnail()
+				, selectedoptionsstr: this.model.get('selectedoptionsstr')
 			};
 			//@class Transaction.Line.Views.Actionable.View
 		}

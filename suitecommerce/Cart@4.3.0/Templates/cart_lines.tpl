@@ -32,8 +32,10 @@
 		</div>
 		<div data-view="Item.Sku"></div>
 		<div data-view="Item.Tax.Info"></div>
-
 		<div class="cart-lines-options">
+			{{#if selectedoptionsstr}}
+				{{{selectedoptionsstr}}}
+			{{/if}}
 			<div data-view="Item.SelectedOptions"></div>
 		</div>
 		{{#if showSummaryView}}
@@ -67,8 +69,8 @@
 
 
 {{!----
-Use the following context variables when customizing this template: 
-	
+Use the following context variables when customizing this template:
+
 	line (Object)
 	line.item (Object)
 	line.item.internalid (Number)
