@@ -34,7 +34,16 @@
 		<div data-view="Item.Tax.Info"></div>
 		<div class="cart-lines-options">
 			{{#if selectedoptionsstr}}
-				{{{selectedoptionsstr}}}
+				<div class="accordion">
+					<div class="accordion-group">
+						<div class="accordion-heading">
+								<a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#options-{{internalid}}">Selected Options</a>
+						</div>
+						<div id="options-{{internalid}}" class="accordion-body collapse">
+								{{{selectedoptionsstr}}}
+						</div>
+					</div>
+				</div>
 			{{/if}}
 			<div data-view="Item.SelectedOptions"></div>
 		</div>

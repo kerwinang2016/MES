@@ -103,6 +103,7 @@ define('Transaction.Line.Views.Cell.Navigable.View'
 		{
 			var item = this.model.get('item')
 			,	line = this.model;
+			console.log(this.model)
 			//@class Transaction.Line.Views.Navigable.View.Context
 			return {
 					//@property {Transaction.Line.Model} model
@@ -143,6 +144,8 @@ define('Transaction.Line.Views.Cell.Navigable.View'
 				,	comparePriceFormatted: line.get('amount_formatted')
 					// @property {ImageContainer} thumbnail
 				,	thumbnail: this.model.getThumbnail()
+				, selectedoptionsstr: this.model.get('selectedoptionsstr')
+				, internalid: this.model.get('internalid')
 			};
 		}
 

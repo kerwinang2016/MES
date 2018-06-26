@@ -94,7 +94,7 @@ define('Cart.Confirmation.View'
 	,	getContext: function()
 		{
 			var item = this.model.get('item');
-
+			console.log(this.model)
 			// @class Cart.Confirmation.View.Context
 			return {
 				// @property {LiveOrder.Line.Model} model
@@ -105,6 +105,8 @@ define('Cart.Confirmation.View'
 			,	showQuantity: (item.get('_itemType') !== 'GiftCert') && (this.model.get('quantity') > 0)
 				// @property {String} itemName
 			,	itemName: item.get('_name', true)
+			, selectedoptionsstr: this.model.get('selectedoptionsstr')
+			, internalid: this.model.get('internalid')
 			};
 		}
 

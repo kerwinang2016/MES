@@ -827,6 +827,13 @@ define(
 				line.item = preloaded_items[line.item] || { itemid: line.item };
 
 				self._addTransactionColumnFieldsToOptions(line);
+				//Set the options
+				var option0 = _.find(line.options,function(lineop){
+					//Kerwin
+					return lineop.cartOptionId == 'custcol_itemoptionssales';
+				});
+				var a = option0.value.internalid.split('\n');
+				line.selectedoptionsstr = a.join('<br/>');
 			});
 
 			// remove the temporary address list by id
@@ -1356,7 +1363,7 @@ define(
 					self.record.setCurrentLineItemValue('item', 'quantity', line.quantity);
 					self.record.setCurrentLineItemValue('item', 'itemtype', line.item.type);
 					self.record.setCurrentLineItemValue('item', 'id', line.internalid);
-					
+
 					self._addTransactionColumnFieldsToOptions(line);
 
 					//Set Line Options

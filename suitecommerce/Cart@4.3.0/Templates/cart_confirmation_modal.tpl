@@ -27,6 +27,18 @@
 				<span class="cart-confirmation-modal-quantity-value">{{model.quantity}}</span>
 			</div>
 		{{/if}}
+		{{#if selectedoptionsstr}}
+			<div class="accordion">
+				<div class="accordion-group">
+					<div class="accordion-heading">
+							<a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#options-{{internalid}}">Selected Options</a>
+					</div>
+					<div id="options-{{internalid}}" class="accordion-body collapse">
+							{{{selectedoptionsstr}}}
+					</div>
+				</div>
+			</div>
+		{{/if}}
 		<div class="cart-confirmation-modal-actions">
 			<div class="cart-confirmation-modal-view-cart">
 				<a href="/cart" class="cart-confirmation-modal-view-cart-button">{{translate 'View Cart &amp; Checkout'}}</a>
@@ -41,8 +53,8 @@
 
 
 {{!----
-Use the following context variables when customizing this template: 
-	
+Use the following context variables when customizing this template:
+
 	model (Object)
 	model.item (Object)
 	model.item.internalid (Number)

@@ -52,7 +52,7 @@ define('Cart.QuickAddToCart.View'
 			BackboneCompositeView.add(this);
 
 			this.cart = LiveOrderModel.getInstance();
-	
+
 			//@property {Boolean} showQuickAddToCartButton Indicate if the current model is valid to be added form the facet list and if the configuration to show this button is enabled
 			this.showQuickAddToCartButton = !!(Configuration.get('addToCartFromFacetsView', false) &&
 								this.model.getItem().get('_isPurchasable') &&
@@ -84,14 +84,14 @@ define('Cart.QuickAddToCart.View'
 		}
 
 	,	childViews: {
-			'AddToCart': function ()
-			{
-				return new CartAddToCartButtonView({
-					model: this.model
-				,	application: this.options.application
-				});
-			}
-		,	'ProductViewsPrice.Price': function ()
+			// 'AddToCart': function ()
+			// {
+			// 	return new CartAddToCartButtonView({
+			// 		model: this.model
+			// 	,	application: this.options.application
+			// 	});
+			// }
+		'ProductViewsPrice.Price': function ()
 			{
 				return new ProductViewsPriceView({
 					model: this.model
@@ -99,7 +99,7 @@ define('Cart.QuickAddToCart.View'
 				});
 			}
 		}
-		
+
 		//@method getContext
 		//@return {Cart.QuickAddToCart.View.Context}
 	,	getContext: function getContext ()
@@ -111,7 +111,7 @@ define('Cart.QuickAddToCart.View'
 				// @property {String} itemId
 				itemId: item_model.get('_id')
 				// @property {Boolean} showQuickAddToCartButton
-			,	showQuickAddToCartButton: this.showQuickAddToCartButton
+			,	showQuickAddToCartButton: false //this.showQuickAddToCartButton
 				// @property {Number} minimumQuantity
 			,	minimumQuantity: this.getMinimumQuantity()
 				// @property {Number} quantity

@@ -42,6 +42,18 @@
 		</div>
 
 		<div data-view="StockDescription"></div>
+		{{#if selectedoptionsstr}}
+			<div class="accordion">
+				<div class="accordion-group">
+					<div class="accordion-heading">
+							<a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#options-{{internalid}}">Selected Options</a>
+					</div>
+					<div id="options-{{internalid}}" class="accordion-body collapse">
+							{{{selectedoptionsstr}}}
+					</div>
+				</div>
+			</div>
+		{{/if}}
 	</td>
 	<td class="transaction-line-views-cell-actionable-table-last">
 		<div data-view="Item.Actions.View"></div>
@@ -62,8 +74,8 @@
 
 
 {{!----
-Use the following context variables when customizing this template: 
-	
+Use the following context variables when customizing this template:
+
 	line (Object)
 	line.item (Object)
 	line.item.internalid (Number)

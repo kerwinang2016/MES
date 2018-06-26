@@ -155,6 +155,7 @@ define('Cart.Lines.View'
 					// @property {ImageContainer} thumbnail
 				,	thumbnail: this.model.getThumbnail()
 				, selectedoptionsstr: this.model.get('selectedoptionsstr')
+				, internalid: this.model.get('internalid')
 			};
 			//@class Transaction.Line.Views.Actionable.View
 		}

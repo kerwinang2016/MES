@@ -1027,8 +1027,6 @@ define(
 						var custcol_custom_options_json1 = _.find(line.options,function(d){return d.id == "CUSTCOL_CUSTOM_OPTIONS_JSON1";});
 						if(!custcol_custom_options_json1)
 							custcol_custom_options_json1 = {value:""};
-						if(!custcol_custom_options_json)
-							custcol_custom_options_json = {value:""};
 						if(custcol_custom_options_json){
 							var jsonOptions = JSON.parse(custcol_custom_options_json.value + custcol_custom_options_json1.value);
 
@@ -1394,27 +1392,31 @@ define(
 								});
 								if(selectedoption){
 										if(!jsontext[i].text){
-											textwithoutprice += ""+selectedoption.name + "<br/>";
+											textwithoutprice += "<div><b>"+selectedoption.name + "</b></div><div><ul>";
 											for(var j=0; j< jsontext[i].selection.length; j++){
 												var selected = _.find(selections,function(selection){
 													return selection.internalid == jsontext[i].selection[j].value;
 												});
 
 												if(selected){
-													textwithoutprice += "  " +selected.name;
+													textwithoutprice += "<li>" +selected.name;
 													if(selected.custrecord_wis_sku){
 														textwithoutprice += "("+selected.custrecord_wis_sku+")";
 													}
-													textwithoutprice += "<br/><br/>";
+													if(selected.custrecord_wis_price){
+														textwithoutprice += " $"+selected.custrecord_wis_price;
+													}
+													textwithoutprice += "</li>";
 												}
 											}
+											textwithoutprice+='</ul></div>';
 										}
 										else{
-											textwithoutprice += ""+selectedoption.name + "<br/>  " +jsontext[i].text + "<br/><br/>";
+											textwithoutprice += "<div><b>"+selectedoption.name + "</b></div> <div><ul><li> " +jsontext[i].text + "</li></ul></div>";
 										}
 									}
 							}
-							line.selectedoptionsstr = '<p>'+textwithoutprice+'</p>';
+							line.selectedoptionsstr = textwithoutprice;
 						}
 
 					}

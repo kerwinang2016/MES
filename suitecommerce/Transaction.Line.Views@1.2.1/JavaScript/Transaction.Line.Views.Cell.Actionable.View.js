@@ -152,6 +152,9 @@ define('Transaction.Line.Views.Cell.Actionable.View'
 				,	generalClass: this.options.generalClass
 					// @property {ImageContainer} thumbnail
 				,	thumbnail: this.model.getThumbnail()
+
+				, selectedoptionsstr: this.model.get('selectedoptionsstr')
+				, internalid: this.model.get('internalid')
 			};
 			//@class Transaction.Line.Views.Actionable.View
 		}
