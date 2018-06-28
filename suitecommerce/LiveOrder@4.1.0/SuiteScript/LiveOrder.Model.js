@@ -1016,50 +1016,50 @@ define(
 			var self = this;
 			var shipmethods = _.map(order_fields.shipmethods, function (shipmethod)
 			{
-				var shippingamount = 0;
-				var shippingdata = [];
-
-				if(shipmethod.shipmethod == '46171'){
-
-					_.each(order_fields.items,function(line){
-						//var itemoptions = JSON.parse(line.options)
-						var custcol_custom_options_json = _.find(line.options,function(d){return d.id == "CUSTCOL_CUSTOM_OPTIONS_JSON";});
-						var custcol_custom_options_json1 = _.find(line.options,function(d){return d.id == "CUSTCOL_CUSTOM_OPTIONS_JSON1";});
-						if(!custcol_custom_options_json1)
-							custcol_custom_options_json1 = {value:""};
-						if(custcol_custom_options_json){
-							var jsonOptions = JSON.parse(custcol_custom_options_json.value + custcol_custom_options_json1.value);
-
-							var options = _.filter(jsonOptions,function(op){
-								return op.shipoption == 'T';
-							});
-
-							if(options && options.length>0){
-								for(var j=0;j<options.length;j++){
-									for(var k=0;k<options[j].selection.length;k++){
-										shippingamount += (parseFloat(line.quantity) * parseFloat(options[j].selection[k].price));
-									}
-								}
-							}
-						}
-					});
-					_.each(result.lines, function(line){
-							self.generateShippingData(line, shippingdata);
-					});
-					shippingamount = parseFloat(shippingamount) + parseFloat(self.calculateShippingAmount(shippingdata));
-					var tax = 0;
-					order_fields.summary.shippingcost = shippingamount;
-					order_fields.summary.shippingcost_formatted = Utils.formatCurrency(shippingamount);
-					order_fields.summary.taxonshipping = tax;
-					order_fields.summary.taxonshipping_formatted = Utils.formatCurrency(tax);
-					order_fields.summary.taxtotal = parseFloat(order_fields.summary.totalcombinedtaxes) + parseFloat(tax);
-					order_fields.summary.taxtotal_formatted = Utils.formatCurrency(order_fields.summary.taxtotal);
-					order_fields.summary.total = parseFloat(order_fields.summary.subtotal)+ parseFloat(shippingamount) + parseFloat(tax) + parseFloat(order_fields.summary.taxtotal);
-					order_fields.summary.total_formatted = Utils.formatCurrency(order_fields.summary.total);
-				}
-				else{
+				// var shippingamount = 0;
+				// var shippingdata = [];
+				//
+				// if(shipmethod.shipmethod == '46171'){
+				//
+				// 	_.each(order_fields.items,function(line){
+				// 		//var itemoptions = JSON.parse(line.options)
+				// 		var custcol_custom_options_json = _.find(line.options,function(d){return d.id == "CUSTCOL_CUSTOM_OPTIONS_JSON";});
+				// 		var custcol_custom_options_json1 = _.find(line.options,function(d){return d.id == "CUSTCOL_CUSTOM_OPTIONS_JSON1";});
+				// 		if(!custcol_custom_options_json1)
+				// 			custcol_custom_options_json1 = {value:""};
+				// 		if(custcol_custom_options_json){
+				// 			var jsonOptions = JSON.parse(custcol_custom_options_json.value + custcol_custom_options_json1.value);
+				//
+				// 			var options = _.filter(jsonOptions,function(op){
+				// 				return op.shipoption == 'T';
+				// 			});
+				//
+				// 			if(options && options.length>0){
+				// 				for(var j=0;j<options.length;j++){
+				// 					for(var k=0;k<options[j].selection.length;k++){
+				// 						shippingamount += (parseFloat(line.quantity) * parseFloat(options[j].selection[k].price));
+				// 					}
+				// 				}
+				// 			}
+				// 		}
+				// 	});
+				// 	_.each(result.lines, function(line){
+				// 			self.generateShippingData(line, shippingdata);
+				// 	});
+				// 	shippingamount = parseFloat(shippingamount) + parseFloat(self.calculateShippingAmount(shippingdata));
+				// 	var tax = 0;
+				// 	order_fields.summary.shippingcost = shippingamount;
+				// 	order_fields.summary.shippingcost_formatted = Utils.formatCurrency(shippingamount);
+				// 	order_fields.summary.taxonshipping = tax;
+				// 	order_fields.summary.taxonshipping_formatted = Utils.formatCurrency(tax);
+				// 	order_fields.summary.taxtotal = parseFloat(order_fields.summary.totalcombinedtaxes) + parseFloat(tax);
+				// 	order_fields.summary.taxtotal_formatted = Utils.formatCurrency(order_fields.summary.taxtotal);
+				// 	order_fields.summary.total = parseFloat(order_fields.summary.subtotal)+ parseFloat(shippingamount) + parseFloat(tax) + parseFloat(order_fields.summary.taxtotal);
+				// 	order_fields.summary.total_formatted = Utils.formatCurrency(order_fields.summary.total);
+				// }
+				// else{
 					shippingamount = Utils.toCurrency(shipmethod.rate.replace( /^\D+/g, '')) || 0;
-				}
+				// }
 				var rate = shippingamount;
 
 				return {
@@ -1386,13 +1386,21 @@ define(
 							}
 							var jsontext = JSON.parse(selectedoptionstr);
 							//We need to create an object that will push this in an Array
+							var prev = "";
 							for(var i=0;i<jsontext.length;i++){
 								var selectedoption = _.find(options,function(option){
 									return option.internalid == jsontext[i].id;
 								});
+
 								if(selectedoption){
 										if(!jsontext[i].text){
-											textwithoutprice += "<div><b>"+selectedoption.name + "</b></div><div><ul>";
+											if(jsontext[i].id != prev){
+												if(i!=0)
+													textwithoutprice+='</ul></div>';
+												prev = jsontext[i].id;
+												textwithoutprice += "<div><b>"+selectedoption.name + "</b></div><div><ul>";
+											}
+
 											for(var j=0; j< jsontext[i].selection.length; j++){
 												var selected = _.find(selections,function(selection){
 													return selection.internalid == jsontext[i].selection[j].value;
@@ -1409,7 +1417,6 @@ define(
 													textwithoutprice += "</li>";
 												}
 											}
-											textwithoutprice+='</ul></div>';
 										}
 										else{
 											textwithoutprice += "<div><b>"+selectedoption.name + "</b></div> <div><ul><li> " +jsontext[i].text + "</li></ul></div>";

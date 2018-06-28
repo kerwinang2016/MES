@@ -72,10 +72,15 @@ define(
 		// @return {GlobalViews.Message.View.Context}
 	,	getContext: function getContext ()
 		{
-			var has_error_code = !!this.options.message.errorCode
-			,	message = has_error_code ? this.options.message.message : this.options.message
-			,	errorCode = this.options.message.errorCode;
-
+			// var has_error_code = this.options.message?!!this.options.message.errorCode:false
+			// ,	message = has_error_code ? this.options.message.message : this.options.message
+			// ,	errorCode = this.options.message.errorCode;
+			var has_error_code = false, message = '', errorCode = '';
+			if(this.options.message){
+				has_error_code = this.options.message.errorCode
+				,	message = has_error_code ? this.options.message.message : this.options.message
+				,	errorCode = this.options.message.errorCode;
+			}
 			return {
 					// @property {String} message
 					message: message

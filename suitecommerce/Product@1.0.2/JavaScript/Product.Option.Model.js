@@ -55,16 +55,28 @@ define('Product.Option.Model'
 					{
 						var max_length = 160;
 
-						if (this.get('type') === 'text' || this.get('type') === 'textarea' )
+						if (this.get('type') === 'text' )
 						{
 							if (this.get('isMandatory') && (!Utils.trim(value)))// || value.length > max_length))
 							{
 								return _('Please enter a valid input for this string').translate();
 							}
-							// else if (value.length > max_length)
-							// {
-							// 	return _('Please enter a string shorter (maximum length: $(0))').translate(max_length);
-							// }
+							else if (value.length > max_length)
+							{
+								return _('Please enter a string shorter (maximum length: $(0))').translate(max_length);
+							}
+						}
+						max_length = 4000;
+						if (this.get('type') === 'textarea' )
+						{
+							if (this.get('isMandatory') && (!Utils.trim(value)))// || value.length > max_length))
+							{
+								return _('Please enter a valid input for this string').translate();
+							}
+							else if (value.length > max_length)
+							{
+								return _('Please enter a string shorter (maximum length: $(0))').translate(max_length);
+							}
 						}
 						if (this.get('type') === 'email' && !Backbone.Validation.patterns.email.test(value) )
 						{
