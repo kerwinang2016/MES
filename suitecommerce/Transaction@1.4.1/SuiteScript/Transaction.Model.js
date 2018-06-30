@@ -832,8 +832,10 @@ define(
 					//Kerwin
 					return lineop.cartOptionId == 'custcol_itemoptionssales';
 				});
-				var a = option0.value.internalid.split('\n');
-				line.selectedoptionsstr = a.join('<br/>');
+				if(option0){
+					var a = option0.value.internalid.split('\n');
+					line.selectedoptionsstr = a.join('<br/>');
+				}
 			});
 
 			// remove the temporary address list by id

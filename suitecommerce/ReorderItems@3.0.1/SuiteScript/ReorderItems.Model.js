@@ -10,7 +10,7 @@
 // Handles fetching of ordered items
 define(
 	'ReorderItems.Model'
-,	[	
+,	[
 		'SC.Model'
 	,	'SC.Models.Init'
 	,	'Application'
@@ -96,14 +96,14 @@ define(
 				filters.scisrecords_operator = 'and';
 				filters.scisrecords = [
 					[
-						['type', 'anyof', ['CashSale','CustInvc']] 
+						['type', 'anyof', ['CashSale','CustInvc']]
 					,	'and'
 					,	[ 'createdfrom', 'is', '@NONE@' ]
 					,	'and'
 					,	[ 'location.locationtype', 'is', SC.Configuration.locationTypeMapping.store.internalid ]
 					,	'and'
 					,	[ 'source', 'is', '@NONE@' ]
-					] 
+					]
 				,	'or'
 				,	[
 						['type', 'anyof', ['SalesOrd']]
@@ -132,7 +132,7 @@ define(
 					search_filter_array = filter_site_ids;
 					search_filter_array.push('@NONE@');
 				}
-			
+
 				if (search_filter_array && search_filter_array.length)
 				{
 					filters.site_operator = 'and';
@@ -156,10 +156,10 @@ define(
 			if (query_filters.date.from && query_filters.date.to)
 			{
 				filters.date_operator = 'and';
-				
+
 				query_filters.date.from = query_filters.date.from.split('-');
 				query_filters.date.to = query_filters.date.to.split('-');
-				
+
 				filters.date = [
 					'trandate'
 				,	'within'
@@ -235,7 +235,7 @@ define(
 							item: StoreItem.get( line.getValue('internalid', 'item', 'group'), line.getValue('type', 'item', 'group') )
 							//@property {String} tranid
 						,	tranid: line.getValue('tranid', null, 'group') ||  null
-							//@property {Array<Utils.ItemOptionsObject>} options 
+							//@property {Array<Utils.ItemOptionsObject>} options
 						,	options: Transaction.parseLineOptions( line.getValue('options', null, 'group') )
 							//@property {String} trandate
 						,	trandate: line.getValue('trandate', null, 'max')
