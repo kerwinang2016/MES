@@ -1330,16 +1330,19 @@ define(
 						// 	nlapiLogExecution('debug','op',op.cartOptionId);
 						// });
 						var option0 = _.find(line.options,function(lineop){
-							//Kerwin
 							return lineop.cartOptionId == 'custcol_custom_options_json';
 						});
 						var option1 = _.find(line.options,function(lineop){
-							//Kerwin
 							return lineop.cartOptionId == 'custcol_custom_options_json1';
 						});
 						var option2 = _.find(line.options,function(lineop){
-							//Kerwin
 							return lineop.cartOptionId == 'custcol_custom_options_json2';
+						});
+						var option3 = _.find(line.options,function(lineop){
+							return lineop.cartOptionId == 'custcol_custom_options_json3';
+						});
+						var option4 = _.find(line.options,function(lineop){
+							return lineop.cartOptionId == 'custcol_custom_options_json4';
 						});
 						if(option0){
 							selectedoptionstr = option0.value.label;
@@ -1348,6 +1351,12 @@ define(
 							}
 							if(option2){
 								selectedoptionstr += option2.value.label;
+							}
+							if(option3){
+								selectedoptionstr += option3.value.label;
+							}
+							if(option4){
+								selectedoptionstr += option3.value.label;
 							}
 							var jsontext;
 							try{

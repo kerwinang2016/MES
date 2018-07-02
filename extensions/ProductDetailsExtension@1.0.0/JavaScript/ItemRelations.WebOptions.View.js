@@ -51,6 +51,12 @@ define(
 			var priceOptionJSON2 = _.find(productOptions,function(model){
 				return model.get('cartOptionId') == "custcol_custom_options_json2";
 			})
+			var priceOptionJSON3 = _.find(productOptions,function(model){
+				return model.get('cartOptionId') == "custcol_custom_options_json3";
+			})
+			var priceOptionJSON4 = _.find(productOptions,function(model){
+				return model.get('cartOptionId') == "custcol_custom_options_json4";
+			})
 			this.model.showOption = this.model.get('custrecord_wo_donotshowbydefault') == 'T'?false:true;
 
 			if(priceOptionJSON && priceOptionJSON.get('value') && priceOptionJSON.get('value').internalid){
@@ -59,6 +65,10 @@ define(
 					oj += priceOptionJSON1.get('value').internalid
 				if(priceOptionJSON2)
 						oj += priceOptionJSON2.get('value').internalid
+				if(priceOptionJSON3)
+						oj += priceOptionJSON3.get('value').internalid
+				if(priceOptionJSON4)
+						oj += priceOptionJSON4.get('value').internalid
 				oj = JSON.parse(oj);
 				if(oj.length>0){
 					for(var i=0;i<oj.length;i++){
@@ -98,19 +108,22 @@ define(
 		var filters= this.model.get('filters');
 		var jsontext= [];
 		var weboptions = $('.weboption .product-custom-option');
+
 		weboptions.each(function(index){
+			var self = this;
+			console.log(self)
 			if($(this).prop('type') == 'select-one'){
 				if($(this).val() != ''){
 					var sel_id = $(this.selectedOptions).val();
 					var price = $(this.selectedOptions).data().price;
 					var sku = $(this.selectedOptions).data().sku;
-					var selected = _.find(selections,function(selection){
-						return selection.internalid == sel_id;
-					});
+					// var selected = _.find(selections,function(selection){
+					// 	return selection.internalid == sel_id;
+					// });
 					var r;
-					if(selected && jsontext.length>0)
+					if(jsontext.length>0)
 					r = _.find(jsontext,function(o){
-						return o.id == selected.custrecord_wis_relatedwebsiteoption;
+						return o.id == $(self).data().option;
 					});
 					if(r){
 						r.selection.push({
@@ -144,13 +157,13 @@ define(
 			else if($(this).prop('type') == 'checkbox'){
 				if($(this).prop('checked')){
 					var sel_id = $(this).data().selection;
-					var selected = _.find(selections,function(selection){
-						return selection.internalid == sel_id;
-					});
+					// var selected = _.find(selections,function(selection){
+					// 	return selection.internalid == sel_id;
+					// });
 					var r;
-					if(selected && jsontext.length>0)
+					if(jsontext.length>0)
 					r = _.find(jsontext,function(o){
-						return o.id == selected.custrecord_wis_relatedwebsiteoption;
+						return o.id == $(self).data().option;
 					});
 					if(r){
 						r.selection.push({
@@ -437,6 +450,8 @@ define(
 		priceOptionModel.set('value',{label:'Options Amount', internalid:optionstotal.toString()});
 
 		var optionsvalues = this.getOptionsDetails();
+		console.log('optionvalues')
+		console.log(optionsvalues)
 		var priceOptionJSON = _.find(productOptions,function(model){
 			return model.get('cartOptionId') == 'custcol_custom_options_json';
 		});
@@ -446,18 +461,27 @@ define(
 		var priceOptionJSON2 = _.find(productOptions,function(model){
 			return model.get('cartOptionId') == 'custcol_custom_options_json2';
 		});
+		var priceOptionJSON3 = _.find(productOptions,function(model){
+			return model.get('cartOptionId') == 'custcol_custom_options_json3';
+		});
+		var priceOptionJSON4 = _.find(productOptions,function(model){
+			return model.get('cartOptionId') == 'custcol_custom_options_json4';
+		});
 		if(JSON.stringify(optionsvalues.jsontext).length < 3999)
 			priceOptionJSON.set('value',{label:'Options Code',internalid:JSON.stringify(optionsvalues.jsontext)});
 		else{
 			var length = 3999;
 			var chunkstr = JSON.stringify(optionsvalues.jsontext).match(new RegExp('.{1,' + length + '}', 'g'));
 			priceOptionJSON.set('value',{label:'Options Code',internalid:chunkstr[0]});
-			if(chunkstr.length == 2){
-				priceOptionJSON1.set('value',{label:'Options Code',internalid:chunkstr[1]});
-			}
-			if(chunkstr.length == 3){
-				priceOptionJSON1.set('value',{label:'Options Code',internalid:chunkstr[1]});
+			priceOptionJSON1.set('value',{label:'Options Code',internalid:chunkstr[1]});
+			if(chunkstr.length >= 3 ){
 				priceOptionJSON2.set('value',{label:'Options Code',internalid:chunkstr[2]});
+			}
+			if(chunkstr.length >= 4 ){
+				priceOptionJSON3.set('value',{label:'Options Code',internalid:chunkstr[3]});
+			}
+			if(chunkstr.length >= 5 ){
+				priceOptionJSON4.set('value',{label:'Options Code',internalid:chunkstr[4]});
 			}
 
 
