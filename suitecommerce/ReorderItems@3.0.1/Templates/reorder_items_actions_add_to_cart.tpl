@@ -6,13 +6,13 @@
 }}
 
 <div class="reorder-items-actions-add-to-cart-button-container">
-	<button 
-		data-item-id="{{itemId}}" 
-		data-line-id="{{lineId}}" 
-		data-parent-id="{{parentItemId}}" 
-		data-item-options="{{itemOptions}}" 
-		data-action="add-to-cart" 
-		{{#if disableButtonAddToCart}} disabled {{/if}} 
+	<button
+		data-item-id="{{itemId}}"
+		data-line-id="{{lineId}}"
+		data-parent-id="{{parentItemId}}"
+		data-item-options="{{itemOptions}}"
+		data-action="add-to-cart"
+		{{#if disableButtonAddToCart}} disabled {{/if}}
 		class="reorder-items-actions-add-to-cart">
 		{{translate 'Add to Cart'}}	
 	</button>

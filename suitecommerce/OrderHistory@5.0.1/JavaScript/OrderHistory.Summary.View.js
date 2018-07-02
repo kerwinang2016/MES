@@ -192,7 +192,7 @@ define('OrderHistory.Summary.View'
 				//@property {Boolean} showRequestReturnButton
 			,	showRequestReturnButton: this.isReturnable()
 				//@property {Boolean} showCancelButton
-			,	showCancelButton: this.model.get('isCancelable')
+			,	showCancelButton: false//this.model.get('isCancelable')
 				// @property {String} taxLabel
 			,	taxLabel: !!Configuration.get('summaryTaxLabel') ? Configuration.get('summaryTaxLabel') : 'Tax'
 

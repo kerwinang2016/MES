@@ -48,12 +48,17 @@ define(
 			var priceOptionJSON1 = _.find(productOptions,function(model){
 				return model.get('cartOptionId') == "custcol_custom_options_json1";
 			})
+			var priceOptionJSON2 = _.find(productOptions,function(model){
+				return model.get('cartOptionId') == "custcol_custom_options_json2";
+			})
 			this.model.showOption = this.model.get('custrecord_wo_donotshowbydefault') == 'T'?false:true;
 
 			if(priceOptionJSON && priceOptionJSON.get('value') && priceOptionJSON.get('value').internalid){
 				var oj = priceOptionJSON.get('value').internalid
 				if(priceOptionJSON1)
 					oj += priceOptionJSON1.get('value').internalid
+				if(priceOptionJSON2)
+						oj += priceOptionJSON2.get('value').internalid
 				oj = JSON.parse(oj);
 				if(oj.length>0){
 					for(var i=0;i<oj.length;i++){
@@ -438,13 +443,24 @@ define(
 		var priceOptionJSON1 = _.find(productOptions,function(model){
 			return model.get('cartOptionId') == 'custcol_custom_options_json1';
 		});
+		var priceOptionJSON2 = _.find(productOptions,function(model){
+			return model.get('cartOptionId') == 'custcol_custom_options_json2';
+		});
 		if(JSON.stringify(optionsvalues.jsontext).length < 3999)
 			priceOptionJSON.set('value',{label:'Options Code',internalid:JSON.stringify(optionsvalues.jsontext)});
 		else{
 			var length = 3999;
 			var chunkstr = JSON.stringify(optionsvalues.jsontext).match(new RegExp('.{1,' + length + '}', 'g'));
 			priceOptionJSON.set('value',{label:'Options Code',internalid:chunkstr[0]});
-			priceOptionJSON1.set('value',{label:'Options Code',internalid:chunkstr[1]});
+			if(chunkstr.length == 2){
+				priceOptionJSON1.set('value',{label:'Options Code',internalid:chunkstr[1]});
+			}
+			if(chunkstr.length == 3){
+				priceOptionJSON1.set('value',{label:'Options Code',internalid:chunkstr[1]});
+				priceOptionJSON2.set('value',{label:'Options Code',internalid:chunkstr[2]});
+			}
+
+
 		}
 
 		if(selectiontext != ''){
