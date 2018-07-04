@@ -175,7 +175,8 @@
         "third_parties/underscore.js": "1.7.0",
         "extensions/ProductDetailsExtension": "1.0.0",
         "extensions/ProductViewsExtension": "1.0.0",
-        "extensions/CartExtension": "1.0.0"
+        "extensions/CartExtension": "1.0.0",
+		"extensions/Homepage": "mes"		
     },
     "tasksConfig": {
         "local": {
