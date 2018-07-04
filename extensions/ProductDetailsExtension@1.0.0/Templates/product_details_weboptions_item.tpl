@@ -47,7 +47,7 @@
 				{{#if custrecord_wo_required}}
 					<input data-option="{{internalid}}" type="text" id="options_{{internalid}}" class="input-text required-entry product-custom-option" name="options_{{internalid}}" value="{{text}}">
 				{{else}}
-					<input data-option="{{internalid}}" type="text" id="options_{{internalid}}" class="input-text product-custom-option" name="options_{{internalid}}" value="{{text}}">
+					<input data-price="{{custrecord_text_option_price}}" data-option="{{internalid}}" type="text" id="options_{{internalid}}" class="input-text product-custom-option" name="options_{{internalid}}" value="{{text}}">
 				{{/if}}
 			{{else ifEquals custrecord_wo_inputtypetext 'radiobutton'}}
 				{{#if custrecord_wo_required}}

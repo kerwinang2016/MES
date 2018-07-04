@@ -111,7 +111,6 @@ define(
 
 		weboptions.each(function(index){
 			var self = this;
-			console.log(self)
 			if($(this).prop('type') == 'select-one'){
 				if($(this).val() != ''){
 					var sel_id = $(this.selectedOptions).val();
@@ -150,7 +149,8 @@ define(
 				if($(this).val() != ''){
 					jsontext.push({
 						id:$(this).data().option,
-						text:$(this).val()
+						text:$(this).val(),
+						price:$(this).data().price
 					});
 				}
 			}
@@ -218,6 +218,19 @@ define(
 				}
 			}
 		}
+		});
+		var textoptions = $(".weboption input:text");
+		textoptions.each(function(index){
+			if($(this).data().shipping == 'T'){}
+			else{
+				var a = $(this).val();
+				if(a){
+						var price = $(this).data().price;
+						if(price){
+							amount+= parseFloat(price);
+						}
+				}
+			}
 		});
 		return amount;
 	}
@@ -450,8 +463,6 @@ define(
 		priceOptionModel.set('value',{label:'Options Amount', internalid:optionstotal.toString()});
 
 		var optionsvalues = this.getOptionsDetails();
-		console.log('optionvalues')
-		console.log(optionsvalues)
 		var priceOptionJSON = _.find(productOptions,function(model){
 			return model.get('cartOptionId') == 'custcol_custom_options_json';
 		});
@@ -483,8 +494,6 @@ define(
 			if(chunkstr.length >= 5 ){
 				priceOptionJSON4.set('value',{label:'Options Code',internalid:chunkstr[4]});
 			}
-
-
 		}
 
 		if(selectiontext != ''){
@@ -524,6 +533,7 @@ define(
 				, text: this.model.text
 				, showOption: this.model.showOption
 				, custrecord_is_shipping_option: this.model.get('custrecord_is_shipping_option')
+				, custrecord_text_option_price: this.model.get('custrecord_text_option_price')
 			};
 			//@class ItemViews.RelatedItem.View
 		}

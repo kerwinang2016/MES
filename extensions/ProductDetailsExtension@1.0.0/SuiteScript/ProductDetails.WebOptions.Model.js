@@ -66,6 +66,7 @@ define(
 			columns.push(new nlobjSearchColumn('internalid'));
 			columns.push(new nlobjSearchColumn('custrecord_wo_donotshowbydefault'));
 			columns.push(new nlobjSearchColumn('custrecord_is_shipping_option'));
+			columns.push(new nlobjSearchColumn('custrecord_text_option_price'));
 			var order = new nlobjSearchColumn('custrecord_wo_order')
 			order.setSort()
 			columns.push(order);
@@ -111,6 +112,7 @@ define(
 			columns.push(new nlobjSearchColumn('internalid'));
 			columns.push(new nlobjSearchColumn('custrecord_wo_donotshowbydefault'));
 			columns.push(new nlobjSearchColumn('custrecord_is_shipping_option'));
+			columns.push(new nlobjSearchColumn('custrecord_text_option_price'));
 			var order = new nlobjSearchColumn('custrecord_wo_order')
 			order.setSort()
 			columns.push(order);
