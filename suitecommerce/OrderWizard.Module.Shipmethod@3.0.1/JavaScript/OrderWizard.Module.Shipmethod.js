@@ -320,6 +320,9 @@ define(
 			,	show_enter_shipping_address_first = !this.model.get('isEstimating') && !this.profileModel.get('addresses').get(this.model.get('shipaddress'))
 			,	shipping_methods = this.model.get('shipmethods').map(function (shipmethod)
 				{
+					if(shipmethod.get('internalid') == "46171"){
+							shipmethod.set('rate_formatted',self.model.get('summary').shippingcost_formatted);
+					}
 					return {
 							name: shipmethod.get('name')
 						,	rate_formatted: shipmethod.get('rate_formatted')
@@ -327,8 +330,7 @@ define(
 						,	isActive: shipmethod.get('internalid') === self.model.get('shipmethod')
 					};
 				});
-				console.log(this)
-				//shipping_methods[0].rate =
+
 			//@class OrderWizard.Module.Shipmethod.Context
 			return {
 					//@property {LiveOrder.Model} model
