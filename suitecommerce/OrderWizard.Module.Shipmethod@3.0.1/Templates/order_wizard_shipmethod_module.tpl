@@ -11,7 +11,7 @@
 			{{title}}
 		</h3>
 	{{/if}}
-	
+
 	{{#if showEnterShippingAddressFirst}}
 		<div class="order-wizard-shipmethod-module-message">
 			{{translate 'Warning: Please enter a valid shipping address first'}}
@@ -27,8 +27,8 @@
 					<select data-action="select-delivery-option" data-action="edit-module" class="order-wizard-shipmethod-module-option-select">
 						<option>{{translate 'Select a delivery method'}}</option>
 						{{#each shippingMethods}}
-							<option 
-							{{#if isActive}}selected{{/if}} 
+							<option
+							{{#if isActive}}selected{{/if}}
 							value="{{internalid}}"
 							id="delivery-options-{{internalid}}">
 								{{rate_formatted}} - {{name}}
@@ -37,14 +37,14 @@
 					</select>
 				{{else}}
 					{{#each shippingMethods}}
-						<a data-action="select-delivery-option-radio" 
+						<a data-action="select-delivery-option-radio"
 						class="order-wizard-shipmethod-module-option {{#if isActive}}order-wizard-shipmethod-module-option-active{{/if}}"
 						data-value="{{internalid}}">
-							<input type="radio" name="delivery-options" data-action="edit-module" class="order-wizard-shipmethod-module-checkbox" 
+							<input type="radio" name="delivery-options" data-action="edit-module" class="order-wizard-shipmethod-module-checkbox"
 							{{#if isActive}}checked{{/if}}
-							value="{{internalid}}" 
+							value="{{internalid}}"
 							id="delivery-options-{{internalid}}" />
-							
+
 							<span class="order-wizard-shipmethod-module-option-name">{{name}}
 								<span class="order-wizard-shipmethod-module-option-price">{{rate_formatted}}</span>	
 							</span>
@@ -64,8 +64,8 @@
 
 
 {{!----
-Use the following context variables when customizing this template: 
-	
+Use the following context variables when customizing this template:
+
 	model (Object)
 	model.addresses (Array)
 	model.addresses.0 (Object)

@@ -1019,57 +1019,57 @@ define(
 				var shippingamount = 0;
 				var shippingdata = [];
 
-				if(shipmethod.shipmethod == '46171'){
-
-					_.each(order_fields.items,function(line){
-						//var itemoptions = JSON.parse(line.options)
-						var custcol_custom_options_json = _.find(line.options,function(d){return d.id == "CUSTCOL_CUSTOM_OPTIONS_JSON";});
-						var custcol_custom_options_json1 = _.find(line.options,function(d){return d.id == "CUSTCOL_CUSTOM_OPTIONS_JSON1";});
-						var custcol_custom_options_json2 = _.find(line.options,function(d){return d.id == "CUSTCOL_CUSTOM_OPTIONS_JSON2";});
-						var custcol_custom_options_json3 = _.find(line.options,function(d){return d.id == "CUSTCOL_CUSTOM_OPTIONS_JSON3";});
-						var custcol_custom_options_json4 = _.find(line.options,function(d){return d.id == "CUSTCOL_CUSTOM_OPTIONS_JSON4";});
-						if(!custcol_custom_options_json1)
-							custcol_custom_options_json1 = {value:""};
-								if(!custcol_custom_options_json2)
-										custcol_custom_options_json2 = {value:""};
-										if(!custcol_custom_options_json3)
-												custcol_custom_options_json3 = {value:""};
-												if(!custcol_custom_options_json4)
-														custcol_custom_options_json4 = {value:""};
-						if(custcol_custom_options_json){
-							var thejsontext = custcol_custom_options_json.value;
-							if(custcol_custom_options_json1.value)
-								thejsontext += custcol_custom_options_json1.value;
-							if(custcol_custom_options_json2.value)
-								thejsontext += custcol_custom_options_json2.value;
-							if(custcol_custom_options_json3.value)
-								thejsontext += custcol_custom_options_json3.value;
-							if(custcol_custom_options_json4.value)
-								thejsontext += custcol_custom_options_json4.value;
-							var jsonOptions = JSON.parse(thejsontext);
-
-							var options = _.filter(jsonOptions,function(op){
-								return op.shipoption == 'T';
-							});
-
-							if(options && options.length>0){
-								for(var j=0;j<options.length;j++){
-									for(var k=0;k<options[j].selection.length;k++){
-										shippingamount += (parseFloat(line.quantity) * parseFloat(options[j].selection[k].price));
-									}
-								}
-							}
-						}
-					});
-					_.each(result.lines, function(line){
-							self.generateShippingData(line, shippingdata);
-					});
-					shippingamount = parseFloat(shippingamount) + parseFloat(self.calculateShippingAmount(shippingdata));
-
-				}
-				else{
+				// if(shipmethod.shipmethod == '46171'){
+				//
+				// 	_.each(order_fields.items,function(line){
+				// 		//var itemoptions = JSON.parse(line.options)
+				// 		var custcol_custom_options_json = _.find(line.options,function(d){return d.id == "CUSTCOL_CUSTOM_OPTIONS_JSON";});
+				// 		var custcol_custom_options_json1 = _.find(line.options,function(d){return d.id == "CUSTCOL_CUSTOM_OPTIONS_JSON1";});
+				// 		var custcol_custom_options_json2 = _.find(line.options,function(d){return d.id == "CUSTCOL_CUSTOM_OPTIONS_JSON2";});
+				// 		var custcol_custom_options_json3 = _.find(line.options,function(d){return d.id == "CUSTCOL_CUSTOM_OPTIONS_JSON3";});
+				// 		var custcol_custom_options_json4 = _.find(line.options,function(d){return d.id == "CUSTCOL_CUSTOM_OPTIONS_JSON4";});
+				// 		if(!custcol_custom_options_json1)
+				// 			custcol_custom_options_json1 = {value:""};
+				// 				if(!custcol_custom_options_json2)
+				// 						custcol_custom_options_json2 = {value:""};
+				// 						if(!custcol_custom_options_json3)
+				// 								custcol_custom_options_json3 = {value:""};
+				// 								if(!custcol_custom_options_json4)
+				// 										custcol_custom_options_json4 = {value:""};
+				// 		if(custcol_custom_options_json){
+				// 			var thejsontext = custcol_custom_options_json.value;
+				// 			if(custcol_custom_options_json1.value)
+				// 				thejsontext += custcol_custom_options_json1.value;
+				// 			if(custcol_custom_options_json2.value)
+				// 				thejsontext += custcol_custom_options_json2.value;
+				// 			if(custcol_custom_options_json3.value)
+				// 				thejsontext += custcol_custom_options_json3.value;
+				// 			if(custcol_custom_options_json4.value)
+				// 				thejsontext += custcol_custom_options_json4.value;
+				// 			var jsonOptions = JSON.parse(thejsontext);
+				//
+				// 			var options = _.filter(jsonOptions,function(op){
+				// 				return op.shipoption == 'T';
+				// 			});
+				//
+				// 			if(options && options.length>0){
+				// 				for(var j=0;j<options.length;j++){
+				// 					for(var k=0;k<options[j].selection.length;k++){
+				// 						shippingamount += (parseFloat(line.quantity) * parseFloat(options[j].selection[k].price));
+				// 					}
+				// 				}
+				// 			}
+				// 		}
+				// 	});
+				// 	_.each(result.lines, function(line){
+				// 			self.generateShippingData(line, shippingdata);
+				// 	});
+				// 	shippingamount = parseFloat(shippingamount) + parseFloat(self.calculateShippingAmount(shippingdata));
+				//
+				// }
+				// else{
 					shippingamount = Utils.toCurrency(shipmethod.rate.replace( /^\D+/g, '')) || 0;
-				}
+				// }
 				var rate = shippingamount;
 
 				return {
