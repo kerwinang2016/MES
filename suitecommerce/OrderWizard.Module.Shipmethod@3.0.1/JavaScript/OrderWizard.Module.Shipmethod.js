@@ -327,7 +327,8 @@ define(
 						,	isActive: shipmethod.get('internalid') === self.model.get('shipmethod')
 					};
 				});
-
+				console.log(this)
+				//shipping_methods[0].rate =
 			//@class OrderWizard.Module.Shipmethod.Context
 			return {
 					//@property {LiveOrder.Model} model
