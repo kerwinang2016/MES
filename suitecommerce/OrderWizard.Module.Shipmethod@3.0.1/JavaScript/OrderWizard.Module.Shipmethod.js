@@ -315,7 +315,7 @@ define(
 		//@returns {OrderWizard.Module.Shipmethod.Context}
 	,	getContext: function getContext ()
 		{
-
+			var shippingcost = 0;
 			var self = this
 			,	show_enter_shipping_address_first = !this.model.get('isEstimating') && !this.profileModel.get('addresses').get(this.model.get('shipaddress'))
 			,	shipping_methods = this.model.get('shipmethods').map(function (shipmethod)

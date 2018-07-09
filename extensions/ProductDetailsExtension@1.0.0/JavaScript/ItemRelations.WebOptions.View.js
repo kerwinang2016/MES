@@ -12,14 +12,14 @@ define(
 		'Backbone.CompositeView'
 	,	'ProductDetails.WebSelections.Model'
 	,	'product_details_weboptions_item.tpl'
-
+	, 'Utils'
 	,	'Backbone'
 	]
 ,	function (
 		BackboneCompositeView
 	,	ProductDetailsWebSelectionsModel
 	,	product_details_weboptions_item_tpl
-
+  , Utils
 	,	Backbone
 	)
 {
@@ -517,6 +517,9 @@ define(
 			// var showOption = false;
 			// if(this.model.get('custrecord_wo_donotshowbydefault') == 'F')
 			// 	showOption = true;
+			var textoptionprice = this.model.get('custrecord_text_option_price');
+			if(textoptionprice)
+				textoptionprice = Utils.formatCurrency(textoptionprice)
 			return {
 				model: this.model
 				, selections: selections
@@ -533,7 +536,7 @@ define(
 				, text: this.model.text
 				, showOption: this.model.showOption
 				, custrecord_is_shipping_option: this.model.get('custrecord_is_shipping_option')
-				, custrecord_text_option_price: this.model.get('custrecord_text_option_price')
+				, custrecord_text_option_price: textoptionprice
 			};
 			//@class ItemViews.RelatedItem.View
 		}

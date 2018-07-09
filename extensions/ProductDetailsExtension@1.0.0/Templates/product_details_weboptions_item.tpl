@@ -15,6 +15,9 @@
 		{{#if custrecord_wo_description}}
 		<div class="weboption-description">
 			{{custrecord_wo_description}}
+			{{#if custrecord_text_option_price}}
+			{{custrecord_text_option_price}}
+			{{/if}}
 		</div>
 		{{/if}}
 
