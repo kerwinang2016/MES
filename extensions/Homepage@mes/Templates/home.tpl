@@ -170,9 +170,11 @@
 </div>
 <!--special needs brands logo -->
 
-	<div class="home-merchandizing-zone">
-		<div data-id="your-merchandising-zone" data-type="merchandising-zone"></div>
-	</div>
+<!--Merchandising zone-->
+<section class="home-page-merchandising">
+<div data-id="home-featured-products" data-type="merchandising-zone"></div>
+</section>
+
 </div>
 
 {{!----

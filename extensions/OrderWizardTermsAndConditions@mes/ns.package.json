@@ -1,0 +1,10 @@
+{
+"gulp": {
+"templates": [
+"Templates/*"
+]
+}
+, "overrides": {
+"suitecommerce/OrderWizard.Module.TermsAndConditions@2.1.2/Templates/order_wizard_termsandconditions_module.tpl": "Templates/order_wizard_termsandconditions_module.tpl"
+}
+}
