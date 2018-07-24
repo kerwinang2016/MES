@@ -62,7 +62,7 @@ define('Configuration'
 	};
 
 	var home = ModelsInit.session.getSiteSettings(['touchpoints']).touchpoints.home.match(/^http(s?)\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)
-	var domain = home?home[2]:'checkout.sandbox.netsuite.com'; //Hack, This needs to change if domain changes.. currently didnt code this properly
+	var domain = home?home[2]:'checkout.na1.netsuite.com'; //Hack, This needs to change if domain changes.. currently didnt code this properly
 
 	/* globals ConfigurationManifestDefaults */
 	SC.Configuration = mergeConfigurationObjects(SC.Configuration, typeof(ConfigurationManifestDefaults) === 'undefined' ? {} : ConfigurationManifestDefaults);

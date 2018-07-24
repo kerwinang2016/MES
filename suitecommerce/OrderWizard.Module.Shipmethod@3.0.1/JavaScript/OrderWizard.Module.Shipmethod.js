@@ -320,7 +320,7 @@ define(
 			,	show_enter_shipping_address_first = !this.model.get('isEstimating') && !this.profileModel.get('addresses').get(this.model.get('shipaddress'))
 			,	shipping_methods = this.model.get('shipmethods').map(function (shipmethod)
 				{
-					if(shipmethod.get('internalid') == "46171"){
+					if(shipmethod.get('internalid') == "66916"){
 							shipmethod.set('rate_formatted',self.model.get('summary').shippingcost_formatted);
 					}
 					return {
