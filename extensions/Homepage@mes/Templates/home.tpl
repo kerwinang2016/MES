@@ -16,10 +16,10 @@
 			<ul data-slider class="home-image-slider-list">
 				{{#each carouselImages}}
 					<li>
-						<div class="home-slide-main-container">
+						<!--<div class="home-slide-main-container">
 							<div class="home-slide-image-container">
-								<img src="{{resizeImage this ../imageHomeSize}}" alt="" />
-							</div>
+								<a href="#"><img src="img/Tilite-ZRA-Series-2-Ultralight-Rigid-Manual-Wheelchair4.jpg" alt="" /></a>
+							</div>-->
 
 							<!--<div class="home-slide-caption">
 								<h2 class="home-slide-caption-title">SAMPLE HEADLINE</h2>
@@ -34,7 +34,8 @@
 				<li>
 					<div class="home-slide-main-container">
 						<div class="home-slide-image-container">
-							<img src="{{getThemeAssetsPath (resizeImage 'img/carousel-home-1.png' ../imageHomeSize)}}" alt="" />
+							<!--<img src="{{getThemeAssetsPath (resizeImage 'img/carousel-home-1.png' ../imageHomeSize)}}" alt="" />-->
+							<a href="#"><img src="http://mes.stairlifteshop.com/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/Tilite-ZRA-Series-2-Ultralight-Rigid-Manual-Wheelchair4.jpg" alt="" /></a>
 						</div>
 
 						<!--<div class="home-slide-caption">
@@ -94,32 +95,32 @@
 	{{else}}
       	<div class="home-banner-main-cell-nth0">
       		<div class="home-banner-main-cell-bg">
-        		<a href="http://netsuite.medicaleshop.in/specialneedskids/special-needs-seating"><img src="{{getThemeAssetsPath (resizeImage 'img/category/home-page-special-needs-seating.jpg' ../imageHomeSizeBottom)}}" alt="" ></a>
+        		<a href="http://mes.stairlifteshop.com/special-needs-kids/special-needs-seating"><img src="{{getThemeAssetsPath (resizeImage 'img/category/home-page-special-needs-seating.jpg' ../imageHomeSizeBottom)}}" alt="" ></a>
         	</div>
       	</div>
       	<div class="home-banner-main-cell-nth0">
       		<div class="home-banner-main-cell-bg">
-        		<a href="http://netsuite.medicaleshop.in/specialneedskids/strollerspushchairs"><img src="{{getThemeAssetsPath (resizeImage 'img/category/home-page-strollers-and-pushchair.jpg' ../imageHomeSizeBottom)}}" alt="" ></a>
+        		<a href="http://mes.stairlifteshop.com/special-needs-kids/strollers-pushchairs"><img src="{{getThemeAssetsPath (resizeImage 'img/category/home-page-strollers-and-pushchair.jpg' ../imageHomeSizeBottom)}}" alt="" ></a>
         	</div>
       	</div>
      	<div class="home-banner-main-cell-nth0">
       		<div class="home-banner-main-cell-bg">
-        		<a href="http://netsuite.medicaleshop.in/specialneedskids/gait-trainers-walkers"><img src="{{getThemeAssetsPath (resizeImage 'img/category/home-page-gait-trainer-and-walkers.jpg' ../imageHomeSizeBottom)}}" alt="" ></a>
+        		<a href="http://mes.stairlifteshop.com/special-needs-kids/gait-trainers-walkers"><img src="{{getThemeAssetsPath (resizeImage 'img/category/home-page-gait-trainer-and-walkers.jpg' ../imageHomeSizeBottom)}}" alt="" ></a>
         	</div>
       	</div>
       	<div class="home-banner-main-cell-nth0">
       		<div class="home-banner-main-cell-bg">
-        		<a href="http://netsuite.medicaleshop.in/specialneedskids/special-needs-standers"><img src="{{getThemeAssetsPath (resizeImage 'img/category/home-page-special-needs-standers.jpg' ../imageHomeSizeBottom)}}" alt="" ></a>
+        		<a href="http://mes.stairlifteshop.com/special-needs-kids/special-needs-standers"><img src="{{getThemeAssetsPath (resizeImage 'img/category/home-page-special-needs-standers.jpg' ../imageHomeSizeBottom)}}" alt="" ></a>
         	</div>
       	</div>
       	<div class="home-banner-main-cell-nth0">
       		<div class="home-banner-main-cell-bg">
-        		<a href="http://netsuite.medicaleshop.in/patient-lifts"><img src="{{getThemeAssetsPath (resizeImage 'img/category/home-page-patient-lifts.jpg' ../imageHomeSizeBottom)}}" alt="" ></a>
+        		<a href="http://mes.stairlifteshop.com/patient-lifts"><img src="{{getThemeAssetsPath (resizeImage 'img/category/home-page-patient-lifts.jpg' ../imageHomeSizeBottom)}}" alt="" ></a>
         	</div>
       	</div>
      	<div class="home-banner-main-cell-nth0">
       		<div class="home-banner-main-cell-bg">
-        		<a href="http://netsuite.medicaleshop.in/bath-safety-aids"><img src="{{getThemeAssetsPath (resizeImage 'img/category/home-page-bath-safety-aids.jpg' ../imageHomeSizeBottom)}}" alt="" ></a>
+        		<a href="http://mes.stairlifteshop.com/bath-safety-aids"><img src="{{getThemeAssetsPath (resizeImage 'img/category/home-page-bath-safety-aids.jpg' ../imageHomeSizeBottom)}}" alt="" ></a>
         	</div>
       	</div>		
     {{/each}}
@@ -130,16 +131,16 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-xs col-sm-6 col-md-3 img-padding">
-			<a target="blank" href="http://mes.stairlifteshop.com/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/pdfs/order-form-mes.pdf"><img src="http://netsuite.medicaleshop.in/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/purchase-order.jpg" /></a>
+			<a target="blank" href="pdfs/order-form-mes.pdf"><img src="http://mes.stairlifteshop.com/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/purchase-order.jpg" /></a>
 		</div>
 		<div class="col-xs col-sm-6 col-md-3 img-padding">
-			<img src="http://netsuite.medicaleshop.in/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/part-accessories.jpg" />
+			<img src="http://mes.stairlifteshop.com/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/part-accessories.jpg" />
 		</div>
 		<div class="col-xs col-sm-6 col-md-3 img-padding">
-			<img src="http://netsuite.medicaleshop.in/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/authorized-dealer.jpg" />
+			<img src="http://mes.stairlifteshop.com/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/authorized-dealer.jpg" />
 		</div>
 		<div class="col-xs col-sm-6 col-md-3 img-padding">
-			<a target="blank" href="https://www.homehealthpavilion.com/"><img src="http://netsuite.medicaleshop.in/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/retail-stores.jpg" /></a>
+			<a target="blank" href="https://www.homehealthpavilion.com"><img src="http://mes.stairlifteshop.com/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/retail-stores.jpg" /></a>
 		</div>
 </div>
 </div>
