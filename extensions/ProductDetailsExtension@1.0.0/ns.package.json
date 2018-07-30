@@ -22,6 +22,7 @@
       "suitecommerce/ProductDetails@1.0.3/JavaScript/ProductDetails.Full.View.js":"JavaScript/ProductDetails.Full.View.js",
 	  "suitecommerce/ProductDetails@1.0.3/JavaScript/ProductDetails.Base.View.js":"JavaScript/ProductDetails.Base.View.js",
       "suitecommerce/ProductDetails@1.0.3/Templates/product_details_full.tpl":"Templates/product_details_full.tpl",
+      "suitecommerce/ProductDetails@1.0.3/Templates/product_details_information.tpl":"Templates/product_details_information.tpl",
       "suitecommerce/ProductDetails@1.0.3/Sass/_product-details-full.scss":"Sass/_product-details-full.scss"
     }
 }       
