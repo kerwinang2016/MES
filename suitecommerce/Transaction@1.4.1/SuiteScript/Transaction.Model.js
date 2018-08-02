@@ -832,9 +832,41 @@ define(
 					//Kerwin
 					return lineop.cartOptionId == 'custcol_itemoptionssales';
 				});
+				var option1 = _.find(line.options,function(lineop){
+					//Kerwin
+					return lineop.cartOptionId == 'custcol_itemoptionssales1';
+				});
+				var option2 = _.find(line.options,function(lineop){
+					//Kerwin
+					return lineop.cartOptionId == 'custcol_itemoptionssales2';
+				});
+				var option3 = _.find(line.options,function(lineop){
+					//Kerwin
+					return lineop.cartOptionId == 'custcol_itemoptionssales3';
+				});
+				var option4 = _.find(line.options,function(lineop){
+					//Kerwin
+					return lineop.cartOptionId == 'custcol_itemoptionssales4';
+				});
 				if(option0){
 					var a = option0.value.internalid.split('\n');
 					line.selectedoptionsstr = a.join('<br/>');
+					if(option1){
+						a = option1.value.internalid.split('\n');
+						line.selectedoptionsstr += a.join('<br/>');
+					}
+					if(option2){
+						a = option2.value.internalid.split('\n');
+						line.selectedoptionsstr += a.join('<br/>');
+					}
+					if(option3){
+						a = option3.value.internalid.split('\n');
+						line.selectedoptionsstr += a.join('<br/>');
+					}
+					if(option4){
+						a = option4.value.internalid.split('\n');
+						line.selectedoptionsstr += a.join('<br/>');
+					}
 				}
 			});
 
