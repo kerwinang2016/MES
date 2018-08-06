@@ -176,8 +176,7 @@
         "extensions/ProductDetailsExtension": "1.0.0",
         "extensions/ProductViewsExtension": "1.0.0",
         "extensions/CartExtension": "1.0.0",
-		"extensions/Homepage": "mes",
-		"extensions/OrderWizardTermsAndConditions": "mes"
+		"extensions/Homepage": "mes"				
     },
     "tasksConfig": {
         "local": {
@@ -323,6 +322,7 @@
                     "Categories",
                     "ExternalPayment",
                     "OrderHistory",
+                    "ReturnAuthorization",
                     "Receipt",
                     "NavigationHelper",
                     "NavigationHelper.Plugins.Standard",
@@ -560,6 +560,7 @@
                 "SiteSettings.ServiceController",
                 "Quote.ServiceController",
                 "Receipt.ServiceController",
+                "ReturnAuthorization.ServiceController",
                 "TransactionHistory.ServiceController",
                 "ReleaseMetadata",
                 "QuoteToSalesOrderValidator.Model",
@@ -867,6 +868,7 @@
                         "RequestQuoteWizard",
                         "Receipt",
                         "RecordViews",
+                        "ReturnAuthorization",
                         {
                             "module": "Header",
                             "include": [

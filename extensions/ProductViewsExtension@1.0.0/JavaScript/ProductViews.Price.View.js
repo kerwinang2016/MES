@@ -79,6 +79,10 @@ define(
 					price_container_object.max.price < price_container_object.compare_price :
 					price_container_object.price < price_container_object.compare_price;
 			}
+			var comparePrice = 0;
+			if(showComparePrice){
+				comparePrice = parseFloat(price_container_object.compare_price) + parseFloat(optionsprice);
+			}
 			//@class ProductViews.Price.View.Context
 			return {
 					// @property {Boolean} isPriceEnabled
@@ -99,7 +103,7 @@ define(
 					// @property {String} priceFormatted
 				,	priceFormatted: Utils.formatCurrency(totalprice)//price_container_object.price_formatted || ''
 					// @property {String} comparePriceFormatted
-				,	comparePriceFormatted: price_container_object.compare_price_formatted || ''
+				,	comparePriceFormatted: Utils.formatCurrency(comparePrice) || ''//price_container_object.compare_price_formatted || ''
 					// @property {String} minPriceFormatted
 				,	minPriceFormatted: price_container_object.min ? price_container_object.min.price_formatted : ''
 					// @property {String} maxPriceFormatted
@@ -107,7 +111,7 @@ define(
 					// @property {Number} price
 				,	price: totalprice//price_container_object.price ? price_container_object.price : 0
 					// @property {Number} comparePrice
-				,	comparePrice: price_container_object.compare_price ? price_container_object.compare_price : 0
+				,	comparePrice: comparePrice?comparePrice:0//price_container_object.compare_price ? price_container_object.compare_price : 0
 					// @property {Number} minPrice
 				,	minPrice: price_container_object.min ? price_container_object.min.price : 0
 					// @property {Number} maxPrice

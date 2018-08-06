@@ -7,7 +7,7 @@
 
 <div class="order-wizard-paymentmethod-paypal-module-row">
 	<div class="order-wizard-paymentmethod-paypal-module-column-left">
-		<img class="order-wizard-paymentmethod-paypal-module-paypal-logo" src="{{getThemeAssetsPathWithDefault paypalImageUrl 'img/paypal.png'}}" alt="PayPal">
+		<img class="order-wizard-paymentmethod-paypal-module-paypal-logo" src="{{paypalImageUrl}}" alt="PayPal">
 	</div>
 	<div class="order-wizard-paymentmethod-paypal-module-column-right">
 

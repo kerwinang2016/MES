@@ -6,6 +6,7 @@
 }}
 
 <div class="order-wizard-paymentmethod-invoice-module">
+	<!--
 	<div class="order-wizard-paymentmethod-invoice-module-row">
 		<div class="order-wizard-paymentmethod-invoice-module-terms">
 			<p class="order-wizard-paymentmethod-invoice-module-terms-label">
@@ -24,10 +25,10 @@
 			</p>
 		</div>
 	</div>
-
+	-->
 	{{#if showTerms}}
 		<p class="order-wizard-paymentmethod-invoice-module-conditions">
-			{{translate 'I agree to pay with my current Invoice <a data-toggle="show-terms" href="#">Terms & Conditions</a>'}}
+			{{translate 'I agree to pay with my current Purchase Order <a data-toggle="show-terms" href="#">Terms & Conditions</a>'}}
 		</p>
 	{{/if}}
 </div>
@@ -35,8 +36,8 @@
 
 
 {{!----
-Use the following context variables when customizing this template: 
-	
+Use the following context variables when customizing this template:
+
 	termsName (String)
 	showTerms (Boolean)
 	balanceAvailable (String)

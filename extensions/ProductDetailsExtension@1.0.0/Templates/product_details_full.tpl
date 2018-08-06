@@ -43,8 +43,8 @@
 						<section data-view="Product.Options"></section>
 							<div data-view="Product.Sku"></div>
 						<div data-view="Quantity.Pricing"></div>
-						{{#if isPriceEnabled}}							
-
+						{{#if isPriceEnabled}}
+							{{#if dontshowprice}}
 							<section class="product-details-full-actions">
 
 								<div class="product-details-full-actions-container">
@@ -58,13 +58,16 @@
 								</div>
 
 							</section>
+							{{else}}
+							<p class="nopricemessage">{{nopricemessage}}</p>
+							{{/if}}
 						{{/if}}
 						<div data-view="Product.Stock.Info"></div>
 
 						<div data-view="StockDescription"></div>
 
 						<div data-view="SocialSharing.Flyout" class="product-details-full-social-sharing"></div>
-						
+
 						<div class="product-details-full-main-bottom-banner">
 							<div id="banner-summary-bottom" class="product-details-full-banner-summary-bottom"></div>
 						</div>
@@ -134,16 +137,18 @@
 					<div class="product-logo">
 					<img src="http://netsuite.medicaleshop.in/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/Sterile-product-logo.jpg"/>
 					</div>
-				{{/if}}	
-				
+				{{/if}}
+
 			</div>
 			</div>
 		</section>
 
 		<section data-view="Product.Information"></section>
 		<section data-view="Product.WebOptions"></section>
-		<div data-view="Product.Price"></div>
 		{{#if isPriceEnabled}}
+			{{#if dontshowprice}}
+		<div data-view="Product.Price"></div>
+
 			<div data-view="Quantity"></div>
 
 			<section class="product-details-full-actions">
@@ -159,6 +164,7 @@
 				</div>
 
 			</section>
+			{{/if}}
 		{{/if}}
 		<div class="product-details-full-divider-desktop"></div>
 

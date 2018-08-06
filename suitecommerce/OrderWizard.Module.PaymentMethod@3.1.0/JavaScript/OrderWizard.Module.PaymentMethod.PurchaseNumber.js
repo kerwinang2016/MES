@@ -8,7 +8,7 @@
 //@module OrderWizard.Module.PaymentMethod
 define(
 	'OrderWizard.Module.PaymentMethod.PurchaseNumber'
-,	[	
+,	[
 		'Wizard.Module'
 	,	'SC.Configuration'
 	,	'order_wizard_paymentmethod_purchasenumber_module.tpl'
@@ -32,7 +32,7 @@ define(
 
 	,	isActive: function ()
 		{
-			return Configuration.get('siteSettings.checkout.showpofieldonpayment', 'T') === 'T';
+			return Configuration.get('siteSettings.checkout.showpofieldonpayment', 'T') === 'T' && jQuery('.order-wizard-paymentmethod-selector-module-options').val() == 'invoice';
 		}
 
 	,	submit: function ()
@@ -45,10 +45,10 @@ define(
 			return jQuery.Deferred().resolve();
 		}
 
-		//@method getContext 
+		//@method getContext
 		//@returns {OrderWizard.Module.PaymentMethod.Creditcard.Context}
 	,	getContext: function ()
-		{		
+		{
 			return {
 				//@property {String} purchaseNumber
 				purchaseNumber: this.wizard.model.get('purchasenumber')

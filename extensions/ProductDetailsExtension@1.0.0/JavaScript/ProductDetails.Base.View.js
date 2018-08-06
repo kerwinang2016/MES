@@ -454,7 +454,6 @@ define(
 		,	getContext: function ()
 			{
 				var item_model = this.model.get('item');
-
 				//@class ProductDetails.Base.View.Context
 				return {
 					//@property {Transaction.Line.Model} model
@@ -484,14 +483,15 @@ define(
 					//@property {Boolean} insuranceEligibleLogo
 				,	insuranceEligibleLogo: item_model.attributes.custiteminsuranceeligiblelogo
 					//@property {Boolean} sterileProductLogo
-				,	sterileProductLogo: item_model.attributes.custitemsterileproductlogo					
+				,	sterileProductLogo: item_model.attributes.custitemsterileproductlogo
 					//@property {String} itemUrl
 				,	itemUrl: item_model.get('_url') + this.model.getQuery()
 					//@property {Boolean} isItemProperlyConfigured
 				,	isItemProperlyConfigured: item_model.isProperlyConfigured()
 					//@property {Boolean} isPriceEnabled
 				,	isPriceEnabled: !ProfileModel.getInstance().hidePrices()
-
+				, dontshowprice: !item_model.get('dontshowprice')
+				, nopricemessage: item_model.get('nopricemessage')
 				};
 				//@class ProductDetails.Base.View
 			}

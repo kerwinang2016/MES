@@ -255,7 +255,8 @@ define('Item.KeyMapping'
 					}
 					else
 					{
-						return prices.onlinecustomerprice;
+						return item.get('pricelevel16');
+						//return prices.onlinecustomerprice;
 					}
 				}
 				else
@@ -279,7 +280,8 @@ define('Item.KeyMapping'
 					}
 					else
 					{
-						return prices.onlinecustomerprice_formatted;
+						return item.get('pricelevel16_formatted')
+						//return prices.onlinecustomerprice_formatted;
 					}
 				}
 				else

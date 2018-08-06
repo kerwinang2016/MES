@@ -69,7 +69,7 @@ define(
 				}
 			,	{
 					classModule: OrderWizardModulePaymentMethodInvoice
-				,	name: _('Invoice').translate()
+				,	name: _('Purchase Order').translate()
 				,	type: 'invoice'
 				,	options: {}
 				}

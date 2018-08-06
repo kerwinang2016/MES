@@ -331,6 +331,7 @@ define(
 							var childCellOption = _.find(self.parentView.childCells,function(o){
 									return o.model.get('internalid') == found[i].custrecord_wof_affectedoptions;
 							});
+
 							if(childCellOption.model.get('custrecord_wo_donotshowbydefault') == 'T')
 							childCellOption.model.showOption = false;
 							childCellOption.model.fetch({async:false}).done(function(data){
