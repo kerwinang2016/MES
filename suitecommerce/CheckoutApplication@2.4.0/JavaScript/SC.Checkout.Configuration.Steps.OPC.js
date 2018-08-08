@@ -173,8 +173,7 @@ define(
 
 						,	[OrderWizardModuleTitle, {title: _('Payment').translate()}]
 						,	[OrderWizardModulePaymentMethodGiftCertificates]
-						,	[OrderWizardModulePaymentMethodSelector,  {record_type:'salesorder', prevent_default: true}]
-						,	OrderWizardModulePaymentMethodPurchaseNumber
+						,	[OrderWizardModulePaymentMethodSelector,  {record_type:'salesorder', prevent_default: true}]						
 						,	[OrderWizardModuleAddressBilling, {title: _('Billing Address').translate(), enable_same_as: function () { return !this.wizard.model.get('ismultishipto') && this.wizard.model.shippingAddressIsRequired();}}]
 						,	OrderWizardModuleRegisterEmail
 

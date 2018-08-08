@@ -26,6 +26,21 @@
 		</div>
 	</div>
 	-->
+		<h3 class="order-wizard-paymentmethod-purchasenumber-module-title">
+			{{translate 'Purchase Order Number/Check Number'}}
+		 </h3>
+		<div class="order-wizard-paymentmethod-purchasenumber-module-row">
+			<label for="purchase-order-number" class="order-wizard-paymentmethod-purchasenumber-module-purchase-order-label">
+				{{translate 'Enter Purchase Order Number/Check Number'}} <span class="order-wizard-paymentmethod-purchasenumber-module-purchase-order-optional"></span>
+			</label>
+			<input
+				type="text"
+				name="purchase-order-number"
+				id="purchase-order-number"
+				class="order-wizard-paymentmethod-purchasenumber-module-purchase-order-value"
+				value="{{purchaseNumber}}"
+			>
+		</div>
 	{{#if showTerms}}
 		<p class="order-wizard-paymentmethod-invoice-module-conditions">
 			{{translate 'I agree to pay with my current Purchase Order <a data-toggle="show-terms" href="#">Terms & Conditions</a>'}}

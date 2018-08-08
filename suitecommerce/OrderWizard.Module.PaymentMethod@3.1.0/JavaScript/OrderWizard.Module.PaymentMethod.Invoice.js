@@ -77,6 +77,10 @@ define(
 	,	submit: function ()
 		{
 			var self = this;
+			var purchase_order_number = this.$('[name=purchase-order-number]').val() || '';
+
+			this.wizard.model.set('purchasenumber', purchase_order_number);
+
 
 			return this.isValid().done(function ()
 			{
@@ -99,6 +103,7 @@ define(
 				,	showTerms: this.wizard.application.getConfig('siteSettings.checkout.requiretermsandconditions') === 'T'
 					//@property {String} balanceAvailable
 				,	balanceAvailable: this.wizard.options.profile.get('balance_available_formatted') || ''
+				, purchaseNumber: this.wizard.model.get('purchasenumber')
 			};
 		}
 	});
