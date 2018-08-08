@@ -49,8 +49,8 @@
 
 
 {{!----
-Use the following context variables when customizing this template: 
-	
+Use the following context variables when customizing this template:
+
 	line (Object)
 	line.item (Object)
 	line.item.internalid (Number)

@@ -148,6 +148,9 @@ define(
 			,	selected_shipmethod = this.model.get('shipmethods').findWhere({internalid: this.model.get('shipmethod')})
 			,	shipping_methods = this.model.get('shipmethods').map(function (shipmethod)
 				{
+					if(shipmethod.get('internalid') == "66916"){
+							shipmethod.set('rate_formatted',self.model.get('summary').shippingcost_formatted);
+					}
 					return {
 							name: shipmethod.get('name')
 						,	rate_formatted: shipmethod.get('rate_formatted')

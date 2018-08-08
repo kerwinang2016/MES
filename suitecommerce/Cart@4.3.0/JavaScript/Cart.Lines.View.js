@@ -23,7 +23,7 @@ define('Cart.Lines.View'
 
 	,	'Backbone'
 	,	'underscore'
-
+	,	'Utils'
 	,	'SC.Configuration'
 	]
 ,	function (
@@ -42,7 +42,7 @@ define('Cart.Lines.View'
 
 	,	Backbone
 	,	_
-
+	, Utils
 	,	Configuration
 	)
 {
@@ -123,7 +123,7 @@ define('Cart.Lines.View'
 	,	getContext: function ()
 		{
 			var item = this.model.get('item');
-			console.log(this.model)
+
 			//@class Transaction.Line.Views.Actionable.View.Context
 			return {
 					//@property {OrderLine.Model|Transaction.Line.Model} line
@@ -135,7 +135,7 @@ define('Cart.Lines.View'
 					//@property {String} itemId
 				,	itemId: item.get('internalid')
 					//@property {String} linkAttributes
-				,	linkAttributes: this.model.getFullLink({quantity:null,location:null,fulfillmentChoice:null})
+				,	linkAttributes: "href='"+Utils.addParamsToUrl(this.model.get('item').get('_url'), {'source': 'cart', 'internalid': this.model.get('internalid')})+"'"//this.model.getFullLink({quantity:null,location:null,fulfillmentChoice:null})
 					//@property {Boolean} isNavigable
 				,	isNavigable: !!this.options.navigable && !!item.get('_isPurchasable')
 					//@property {Boolean} showCustomAlert

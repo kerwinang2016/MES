@@ -92,7 +92,8 @@ define(
 					searchid+=1000;
 				}
 			}while(res && res.length == 1000);
-
+			// var selections = WebSelections.search(id, null);
+			// var filters = WebFilters.search(id,null);
 			return websiteoptions;
 		}
 	,	get: function (id, internalid)

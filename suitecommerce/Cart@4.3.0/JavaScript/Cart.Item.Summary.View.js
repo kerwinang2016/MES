@@ -56,12 +56,12 @@ define('Cart.Item.Summary.View'
 	,	addQuantity: function (e)
 		{
 			e.preventDefault();
-			
+
 			var $element = this.$(e.target)
 			,	quantity_input = $element.parent().find('input')
 			,	old_value = quantity_input.val()
 			,	new_val = parseFloat(old_value) + 1;
-			
+
 			quantity_input.val(new_val);
 			quantity_input.change();
 		}
@@ -72,12 +72,12 @@ define('Cart.Item.Summary.View'
 	,	subQuantity: function (e)
 		{
 			e.preventDefault();
-			
+
 			var $element = this.$(e.target)
 			,	quantity_input = $element.parent().find('input')
 			,	old_value = quantity_input.val()
 			,	new_val = parseFloat(old_value) - 1;
-			
+
 			new_val = Math.max(this.model.get('item').get('_minimumQuantity', true), new_val);
 
 			quantity_input.val(new_val);
@@ -87,9 +87,9 @@ define('Cart.Item.Summary.View'
 			'PromocodeList': function ()
 			{
 				if(!!this.model.get('discounts_impact')){
-					
+
 					var discounts = _.filter(this.model.get('discounts_impact').discounts, function(discount){ return !!discount.promotion_couponcode; });
-					
+
 					return new BackboneCollectionView({
 						collection: discounts
 					,	viewsPerRow: 1
