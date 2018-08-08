@@ -6,8 +6,8 @@
 }}
 
 <div>
-         {{model.__customFieldsMetadata.custbody_message.label}}:
-          <input type="text" name="custbody_message" value="{{model.options.custbody_message}}">
+         {{model.__customFieldsMetadata.custbodycustbody_message.label}}:
+          <input type="text" name="custbodycustbody_message" value="{{model.options.custbodycustbody_message}}">
 </div>
 	
 	
@@ -24,5 +24,5 @@
 
 {{!----
 The context variables for this template are not currently documented. Use the {{log this}} helper to view the context variables in the Console of your browser's developer tools.
-model.options.custbody_message (String)
+model.options.custbodycustbody_message (String)
 ----}}
