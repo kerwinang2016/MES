@@ -85,15 +85,25 @@ define(
 							if(res[i].getText(cols[j]))
 							recorddata[jointext+cols[j].name+"text"] = res[i].getText(cols[j]);
 						}
+						if(!id){
 						recorddata.selections = WebSelections.search(null,res[i].getValue('internalid'))
 						recorddata.filters = WebFilters.search(null,res[i].getValue('internalid'))
+						}
 						websiteoptions.push(recorddata);
 					}
 					searchid+=1000;
 				}
 			}while(res && res.length == 1000);
-			// var selections = WebSelections.search(id, null);
-			// var filters = WebFilters.search(id,null);
+			var count = 0;
+			if(id){
+				var selections = WebSelections.search(id, null);
+				var filters = WebFilters.search(id,null);
+				do{
+					websiteoptions[count].selections = _.filter(selections,function(a){return a.custrecord_wis_relatedwebsiteoption == websiteoptions[count].internalid;});
+					websiteoptions[count].filters = _.filter(filters,function(a){return a.custrecord_wof_woref == websiteoptions[count].internalid;});
+					count++;
+				}while(websiteoptions.length > count);
+			}
 			return websiteoptions;
 		}
 	,	get: function (id, internalid)
