@@ -88,6 +88,9 @@ define(
 						if(!id){
 						recorddata.selections = WebSelections.search(null,res[i].getValue('internalid'))
 						recorddata.filters = WebFilters.search(null,res[i].getValue('internalid'))
+						}else{
+							recorddata.selections = [];
+							recorddata.filters = [];
 						}
 						websiteoptions.push(recorddata);
 					}
@@ -95,11 +98,13 @@ define(
 				}
 			}while(res && res.length == 1000);
 			var count = 0;
-			if(id){
+			if(id && websiteoptions && websiteoptions.length>0){
 				var selections = WebSelections.search(id, null);
 				var filters = WebFilters.search(id,null);
 				do{
+					if(selections)
 					websiteoptions[count].selections = _.filter(selections,function(a){return a.custrecord_wis_relatedwebsiteoption == websiteoptions[count].internalid;});
+					if(filters)
 					websiteoptions[count].filters = _.filter(filters,function(a){return a.custrecord_wof_woref == websiteoptions[count].internalid;});
 					count++;
 				}while(websiteoptions.length > count);
