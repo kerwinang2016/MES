@@ -67,7 +67,7 @@
 						<div data-view="StockDescription"></div>
 
 						<div data-view="SocialSharing.Flyout" class="product-details-full-social-sharing"></div>
-
+						
 						<div class="product-details-full-main-bottom-banner">
 							<div id="banner-summary-bottom" class="product-details-full-banner-summary-bottom"></div>
 						</div>
@@ -80,68 +80,81 @@
 
 				{{#if freeShippingLogo }}
 					<div class="product-logo">
-					<img src="http://netsuite.medicaleshop.in/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/free-ship-logo.jpg"/>
+					<img src="http://mes.stairlifteshop.com/img/logo/free-ship-logo.jpg"/>
 					</div>
 				{{/if}}
 				{{#if noReturnsLogo }}
 					<div class="product-logo">
-					<img src="http://netsuite.medicaleshop.in/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/hygiene-product-logo.jpg"/>
-					</div>
-				{{/if}}
-				{{#if hygieneProductLogo }}
-					<div class="product-logo">
-					<img src="http://netsuite.medicaleshop.in/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/hygiene-product.jpg"/>
+					<img src="http://mes.stairlifteshop.com/img/logo/hygiene-product-logo.jpg"/>
 					</div>
 				{{/if}}
 				{{#if rxRequiredLogo }}
 					<div class="product-logo">
-					<img src="http://netsuite.medicaleshop.in/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/rx-required.jpg"/>
+					<img src="http://mes.stairlifteshop.com/img/logo/rx-required.jpg"/>
 					</div>
 				{{/if}}
 				{{#if freeWhitegloveLogo }}
 				<div class="product-logo">
-				<img src="http://netsuite.medicaleshop.in/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/free-white-glove-delivery-icon.jpg"/>
+				<img src="http://mes.stairlifteshop.com/img/logo/free-white-glove-delivery-icon.jpg"/>
 				</div>
 				{{/if}}
 				{{#if freeCurbsideLogo }}
 					<div class="product-logo">
-					<img src="http://netsuite.medicaleshop.in/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/free-curbside-delivery-logo.jpg"/>
+					<img src="http://mes.stairlifteshop.com/img/logo/free-curbside-delivery-logo.jpg"/>
 					</div>
 				{{/if}}
 				{{#if bulkItemsLogo }}
 					<div class="product-logo">
-					<img src="http://netsuite.medicaleshop.in/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/bulk-items-logo.jpg"/>
+					<img src="http://mes.stairlifteshop.com/img/logo/bulk-items-logo.jpg"/>
 					</div>
 				{{/if}}
 				{{#if freeLocalLogo }}
 					<div class="product-logo">
-					<img src="http://netsuite.medicaleshop.in/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/Free-local-delivery.jpg"/>
+					<img src="http://mes.stairlifteshop.com/img/logo/Free-local-delivery.jpg"/>
 					</div>
 				{{/if}}
 				{{#if crashTestedLogo }}
 					<div class="product-logo">
-					<img src="http://netsuite.medicaleshop.in/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/Crash-tested-logo.jpg"/>
+					<img src="http://mes.stairlifteshop.com/img/logo/Crash-tested-logo.jpg"/>
 					</div>
 				{{/if}}
 				{{#if adaCompliantLogo }}
 					<div class="product-logo">
-					<img src="http://netsuite.medicaleshop.in/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/Ada-compliant-logo.jpg"/>
+					<img src="http://mes.stairlifteshop.com/img/logo/Ada-compliant-logo.jpg"/>
 					</div>
 				{{/if}}
 				{{#if insuranceEligibleLogo }}
 					<div class="product-logo">
-					<img src="http://netsuite.medicaleshop.in/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/Insurance-eligible-logo.jpg"/>
+					<img src="http://mes.stairlifteshop.com/img/logo/Insurance-eligible-logo.jpg"/>
 					</div>
 				{{/if}}
 				{{#if sterileProductLogo }}
 					<div class="product-logo">
-					<img src="http://netsuite.medicaleshop.in/SSP Applications/NetSuite Inc. - SCA Kilimanjaro/Development/img/Sterile-product-logo.jpg"/>
+					<img src="http://mes.stairlifteshop.com/img/logo/Sterile-product-logo.jpg"/>
 					</div>
 				{{/if}}
-
+				{{#if customProductLogo }}
+					<div class="product-logo">
+					<img src="http://mes.stairlifteshop.com/img/logo/custom-product-logo.jpg"/>
+					</div>
+				{{/if}}				
+				{{#if callUsMsg }}
+					<div class="callbuymsg">
+					{{model.item.custitemcallusmsg}}
+					</div>
+				{{/if}}				
+				{{#if buyNowMsg }}
+					<div class="callbuymsg">
+					{{model.item.custitembunowmsg}}
+					</div>
+				{{/if}}
 			</div>
 			</div>
-		</section>
+			<div class="productmsgresna">
+			{{model.item.custitem_product_msg}}
+			<br>
+			</div>
+			</section>
 
 		<section data-view="Product.Information"></section>
 		<section data-view="Product.WebOptions"></section>
@@ -202,7 +215,6 @@ Use the following context variables when customizing this template:
 	pageHeader (String)
 	freeShippingLogo (Boolean)
 	noReturnsLogo (Boolean)
-	hygieneProductLogo (Boolean)
 	rxRequiredLogo (Boolean)
 	freeWhitegloveLogo (Boolean)
 	freeCurbsideLogo (Boolean)
@@ -212,8 +224,11 @@ Use the following context variables when customizing this template:
 	adaCompliantLogo (Boolean)
 	insuranceEligibleLogo (Boolean)
 	sterileProductLogo (Boolean)
+	customProductLogo (Boolean)
+	callUsMsg (Boolean)
+	buyNowMsg (Boolean)
 	itemUrl (String)
 	isItemProperlyConfigured (Boolean)
 	isPriceEnabled (Boolean)
-
+	custitem_product_msg (String)
 	----}}

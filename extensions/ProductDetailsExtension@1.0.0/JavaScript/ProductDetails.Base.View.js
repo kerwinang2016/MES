@@ -464,8 +464,6 @@ define(
 				,	freeShippingLogo: item_model.attributes.custitemshowfreeshiplogo
 					//@property {Boolean} noReturnsLogo
 				,	noReturnsLogo: item_model.attributes.custitemnoreturnslogo
-					//@property {Boolean} hygieneProductLogo
-				,	hygieneProductLogo: item_model.attributes.custitemhygieneproductlogo
 					//@property {Boolean} rxRequiredLogo
 				,	rxRequiredLogo: item_model.attributes.custitemrxrequiredlogo
 					//@property {Boolean} freeWhitegloveLogo
@@ -484,6 +482,14 @@ define(
 				,	insuranceEligibleLogo: item_model.attributes.custiteminsuranceeligiblelogo
 					//@property {Boolean} sterileProductLogo
 				,	sterileProductLogo: item_model.attributes.custitemsterileproductlogo
+					//@property {Boolean} customProductLogo
+				,	customProductLogo: item_model.attributes.custitemcustomitemnoreturns
+					//@property {Boolean} callUsMsg
+				,	callUsMsg: item_model.attributes.custitemcallusmsg
+					//@property {Boolean} buyNowMsg
+				,	buyNowMsg: item_model.attributes.custitembunowmsg
+					//@property {String} productMessage
+				,	productMessage: item_model.attributes.custitem_product_msg
 					//@property {String} itemUrl
 				,	itemUrl: item_model.get('_url') + this.model.getQuery()
 					//@property {Boolean} isItemProperlyConfigured

@@ -6,9 +6,9 @@
 }}
 
 <div>
-         {{model.__customFieldsMetadata.custbodycustbody_message.label}}:
-          <p>Please fill in <strong>Order Comments</strong>here.</p>
-		  <input type="text" name="custbodycustbody_message" value="{{model.options.custbodycustbody_message}}">
+		<p>Please fill in <strong>Order Comments</strong>here.</p>
+		{{model.__customFieldsMetadata.custbodycustbody_message.label}}:		
+		<input type="text" name="custbodycustbody_message" value="{{model.options.custbodycustbody_message}}">
 </div>
 	
 	
