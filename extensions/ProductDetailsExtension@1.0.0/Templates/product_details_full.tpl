@@ -149,10 +149,9 @@
 					</div>
 				{{/if}}
 			</div>
-			</div>
 			<div class="productmsgresna">
-			{{model.item.custitem_product_msg}}
-			<br>
+			{{{model.item.custitem_product_msg}}}
+			</div>
 			</div>
 			</section>
 
