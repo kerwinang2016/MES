@@ -94,7 +94,7 @@ define('Cart.Confirmation.View'
 	,	getContext: function()
 		{
 			var item = this.model.get('item');
-			console.log(this.model)
+			
 			// @class Cart.Confirmation.View.Context
 			return {
 				// @property {LiveOrder.Line.Model} model

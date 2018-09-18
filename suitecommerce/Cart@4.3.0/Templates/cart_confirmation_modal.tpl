@@ -39,6 +39,10 @@
 				</div>
 			</div>
 		{{/if}}
+		<div class="cart-confirmation-modal-amount">
+				<span class="cart-confirmation-modal-amount-label">Amount: </span>
+			<span class="cart-confirmation-modal-amount-value">{{model.amount_formatted}}</span>  
+		</div>
 		<div class="cart-confirmation-modal-actions">
 			<div class="cart-confirmation-modal-view-cart">
 				<a href="/cart" class="cart-confirmation-modal-view-cart-button">{{translate 'View Cart &amp; Checkout'}}</a>

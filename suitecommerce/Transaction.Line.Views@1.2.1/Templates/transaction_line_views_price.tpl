@@ -10,7 +10,7 @@
 	<span class="transaction-line-views-price-exact" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
 		<meta itemprop="priceCurrency" content="{{currencyCode}}"/>
 		<span class="transaction-line-views-price-lead" itemprop="price" data-rate="{{price}}">
-			{{rateFormatted}}
+			Unit Price: {{rateFormatted}}
 	</span>
 		{{#if showComparePrice}}
 			<small class="transaction-line-views-price-old">
@@ -31,8 +31,8 @@
 
 
 {{!----
-Use the following context variables when customizing this template: 
-	
+Use the following context variables when customizing this template:
+
 	model (Object)
 	model.item (Object)
 	model.item.internalid (Number)
