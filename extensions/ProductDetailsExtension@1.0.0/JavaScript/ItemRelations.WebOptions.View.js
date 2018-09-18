@@ -450,13 +450,15 @@ define(
 						}
 				}
 			}
-			if($(e.target).prop('type')!='text')
-				this.render();
+		if($(e.target).prop('type')!='text')
+			this.render();
 		// }
+
 		var productView = this.parentView.parentView;
 		var productModel = productView.model;
 		//Get the base price of the item
 		var productOptions = productModel.get('options').models;
+
 		var priceOptionModel = _.find(productOptions,function(model){
 			return model.get('cartOptionId') == 'custcol_custom_options_price';
 		})
@@ -518,9 +520,10 @@ define(
 			// var showOption = false;
 			// if(this.model.get('custrecord_wo_donotshowbydefault') == 'F')
 			// 	showOption = true;
-			var textoptionprice = this.model.get('custrecord_text_option_price');
-			if(textoptionprice)
-				textoptionprice = Utils.formatCurrency(textoptionprice)
+			var textoptionprice = this.model.get('custrecord_text_option_price'), textoptionprice_formatted = '';
+			if(textoptionprice){
+				textoptionprice_formatted = Utils.formatCurrency(textoptionprice);
+			}
 			return {
 				model: this.model
 				, selections: selections
@@ -538,6 +541,7 @@ define(
 				, showOption: this.model.showOption
 				, custrecord_is_shipping_option: this.model.get('custrecord_is_shipping_option')
 				, custrecord_text_option_price: textoptionprice
+				, textoptionprice_formatted: textoptionprice_formatted
 			};
 			//@class ItemViews.RelatedItem.View
 		}

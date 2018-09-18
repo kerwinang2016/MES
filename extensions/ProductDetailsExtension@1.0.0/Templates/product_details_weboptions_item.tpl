@@ -8,9 +8,9 @@
 <div class="weboption">
 	{{#if showOption}}
 		{{#if custrecord_wo_required}}
-		<label class="weboption-name required">{{name}}</label>
+		<label class="weboption-name required">{{name}} {{textoptionprice_formatted}}</label>
 		{{else}}
-		<label class="weboption-name">{{name}}</label>
+		<label class="weboption-name">{{name}} {{textoptionprice_formatted}}</label>
 		{{/if}}
 		{{#if custrecord_wo_description}}
 		<div class="weboption-description">
@@ -48,7 +48,7 @@
 				</ul>
 			{{else ifEquals custrecord_wo_inputtypetext 'text'}}
 				{{#if custrecord_wo_required}}
-					<input data-option="{{internalid}}" type="text" id="options_{{internalid}}" class="input-text required-entry product-custom-option" name="options_{{internalid}}" value="{{text}}">
+					<input data-price="{{custrecord_text_option_price}}" data-option="{{internalid}}" type="text" id="options_{{internalid}}" class="input-text required-entry product-custom-option" name="options_{{internalid}}" value="{{text}}">
 				{{else}}
 					<input data-price="{{custrecord_text_option_price}}" data-option="{{internalid}}" type="text" id="options_{{internalid}}" class="input-text product-custom-option" name="options_{{internalid}}" value="{{text}}">
 				{{/if}}

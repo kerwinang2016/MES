@@ -119,6 +119,8 @@ define(
 
 					// @property {Boolean} showHighlightedMessage
 				,	showHighlightedMessage:	_.indexOf(ProductViewsPriceView.highlightedViews, this.options.origin) >= 0
+				, dontshowprice: productModel.get('item')?!productModel.get('item').get('dontshowprice'):false
+				, nopricemessage: productModel.get('item')?productModel.get('item').get('nopricemessage'):''
 			};
 			//@class ProductViews.Price.View
 		}

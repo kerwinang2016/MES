@@ -67,7 +67,7 @@
 						<div data-view="StockDescription"></div>
 
 						<div data-view="SocialSharing.Flyout" class="product-details-full-social-sharing"></div>
-						
+
 						<div class="product-details-full-main-bottom-banner">
 							<div id="banner-summary-bottom" class="product-details-full-banner-summary-bottom"></div>
 						</div>
@@ -137,12 +137,12 @@
 					<div class="product-logo">
 					<img src="http://mes.stairlifteshop.com/img/logo/custom-product-logo.jpg"/>
 					</div>
-				{{/if}}				
+				{{/if}}
 				{{#if callUsMsg }}
 					<div class="callbuymsg">
 					{{model.item.custitemcallusmsg}}
 					</div>
-				{{/if}}				
+				{{/if}}
 				{{#if buyNowMsg }}
 					<div class="callbuymsg">
 					{{model.item.custitembunowmsg}}
