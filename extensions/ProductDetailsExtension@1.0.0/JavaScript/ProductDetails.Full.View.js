@@ -67,13 +67,15 @@ define(
 
 			ProductDetailsBaseView.prototype.initialize.apply(this, arguments);
 			var self = this;
+
 			if(this.model.get('internalid')){
 				var a = LiveOrderModel.getInstance();
+				var caritemid = this.model.get('internalid');
 				_.each(a.get('lines').models,function(b){
-					if(b.get('internalid') == self.model.get('internalid')){
+					if(b.get('internalid') == caritemid){
 							self.model.set('options', b.get('options').clone());
 							self.model.get('item').set('options',b.get('options').clone());
-
+							self.model.set('quantity', b.get('quantity'));
 					}
 				});
 			}

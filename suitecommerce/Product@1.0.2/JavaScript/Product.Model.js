@@ -205,8 +205,9 @@ define('Product.Model'
 					self.validation[option.get('cartOptionId')] = {
 						fn: function optionValidationFunction (value, cartOptionId, computedState)
 						{
-							var selected_option = computedState.options.findWhere({cartOptionId: cartOptionId})
-							,	validation = selected_option.validate();
+							var selected_option = computedState.options.findWhere({cartOptionId: cartOptionId}),	validation;
+							if(selected_option)
+								validation = selected_option.validate();
 
 							//We use 'value.internalid' as we are validating the complex object 'value' which is of the form {internalid,label}
 							if (validation && validation['value.internalid'])
