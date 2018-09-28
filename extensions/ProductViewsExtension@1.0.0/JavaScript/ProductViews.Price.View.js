@@ -81,7 +81,7 @@ define(
 			}
 			var comparePrice = 0;
 			if(showComparePrice){
-				comparePrice = parseFloat(price_container_object.compare_price) + parseFloat(optionsprice);
+				comparePrice = (parseFloat(price_container_object.compare_price) + parseFloat(optionsprice))*parseFloat(this.model.get('quantity')?this.model.get('quantity'):1);
 			}
 			//@class ProductViews.Price.View.Context
 			return {

@@ -13,7 +13,7 @@ define(
 	,	'Session'
 	,	'SC.Configuration'
 	,	'transaction_line_views_price.tpl'
-
+	, 'Utils'
 	,	'Backbone'
 	]
 ,	function(
@@ -21,7 +21,7 @@ define(
 	,	Session
 	,	Configuration
 	,	transaction_line_views_price_tpl
-
+	, Utils
 	,	Backbone
 
 	)
@@ -67,7 +67,19 @@ define(
 		{
 			var price_container_object = this.model.getPrice()
 			,	showComparePrice = this.options.showComparePrice && price_container_object.price < price_container_object.compare_price;
-
+			var productModel = this.model;
+			var productOptions = productModel.get('options').models;
+			var priceOptionModel = _.find(productOptions,function(model){
+				return model.get('cartOptionId') == 'custcol_custom_options_price';
+			})
+			var totalprice = price_container_object.price ? parseFloat(price_container_object.price) : 0
+			var optionsprice = priceOptionModel && priceOptionModel.get('value')?parseFloat(priceOptionModel.get('value').internalid):0;
+			var rate = totalprice + optionsprice;
+			totalprice = rate * parseFloat(this.model.get('quantity')?this.model.get('quantity'):1);
+			var comparePrice = 0;
+			if(showComparePrice){
+				comparePrice = parseFloat(price_container_object.compare_price) + parseFloat(optionsprice);
+			}
 			//@class Transaction.Line.Views.Price.View.Context
 			return {
 				// @property {Transaction.Line.Model} model
@@ -79,15 +91,16 @@ define(
 				// @property {String} currencyCode
 			,	currencyCode: SC.getSessionInfo('currency').code || ''
 				// @property {String} comparePriceFormatted
-			,	comparePriceFormatted: price_container_object.compare_price_formatted || ''
+			,	comparePriceFormatted: Utils.formatCurrency(comparePrice) || ''//price_container_object.compare_price_formatted || ''
 				// @property {Number} price
-			,	price: price_container_object.price || 0
+			,	price: totalprice//price_container_object.price ? price_container_object.price : 0
 				// @property {String} rateFormatted
 			,	rateFormatted: this.model.get('rate_formatted') || price_container_object.price_formatted || ''
 				// @property {Boolean} isPriceEnabled
 			,	isPriceEnabled: this.isPriceEnabled
 				// @property {String} urlLogin
 			,	urlLogin: this.getUrlLogin()
+			,	comparePrice: comparePrice?comparePrice:0
 			};
 			//@class Transaction.Line.Views.Price.View
 		}
