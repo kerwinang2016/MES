@@ -19,6 +19,7 @@ define(
 	,	'OrderWizard.Module.PaymentMethod.GiftCertificates'
 	,	'OrderWizard.Module.PaymentMethod.Selector'
 	,	'OrderWizard.Module.PaymentMethod.PurchaseNumber'
+	,	'OrderWizard.Module.PaymentMethod.CheckMoneyOrder'
 	,	'OrderWizard.Module.Address.Billing'
 	,	'OrderWizard.Module.RegisterEmail'
 	,	'OrderWizard.Module.ShowPayments'
@@ -52,6 +53,7 @@ define(
 	,	OrderWizardModulePaymentMethodGiftCertificates
 	,	OrderWizardModulePaymentMethodSelector
 	,	OrderWizardModulePaymentMethodPurchaseNumber
+	,	OrderWizardModulePaymentMethodCheckMoneyOrder
 	,	OrderWizardModuleAddressBilling
 	,	OrderWizardModuleRegisterEmail
 	,	OrderWizardModuleShowPayments
@@ -173,7 +175,7 @@ define(
 
 						,	[OrderWizardModuleTitle, {title: _('Payment').translate()}]
 						,	[OrderWizardModulePaymentMethodGiftCertificates]
-						,	[OrderWizardModulePaymentMethodSelector,  {record_type:'salesorder', prevent_default: true}]						
+						,	[OrderWizardModulePaymentMethodSelector,  {record_type:'salesorder', prevent_default: true}]
 						,	[OrderWizardModuleAddressBilling, {title: _('Billing Address').translate(), enable_same_as: function () { return !this.wizard.model.get('ismultishipto') && this.wizard.model.shippingAddressIsRequired();}}]
 						,	OrderWizardModuleRegisterEmail
 
@@ -287,6 +289,7 @@ define(
 						OrderWizardModulePaymentMethodGiftCertificates
 					,	[OrderWizardModulePaymentMethodSelector,  {record_type:'salesorder', prevent_default: true}]
 					,	OrderWizardModulePaymentMethodPurchaseNumber
+					,	OrderWizardModulePaymentMethodCheckMoneyOrder
 					,	[OrderWizardModuleAddressBilling
 						,	{
 								enable_same_as: function () { return !this.wizard.isMultiShipTo();}

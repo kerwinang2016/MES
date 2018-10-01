@@ -9,7 +9,7 @@
 // --------------------------------
 //
 define(
-	'OrderWizard.Module.PaymentMethod.PurchaseNumber'
+	'OrderWizard.Module.PaymentMethod.CheckMoneyOrder'
 ,	[	'OrderWizard.Module.PaymentMethod'
 	,	'Transaction.Paymentmethod.Model'
 
@@ -77,9 +77,6 @@ define(
 	,	submit: function ()
 		{
 			var self = this;
-			var purchase_order_number = this.$('[name=purchase-order-number]').val() || '';
-
-			this.wizard.model.set('purchasenumber', purchase_order_number);
 
 			return this.isValid().done(function ()
 			{
@@ -103,7 +100,7 @@ define(
 					//@property {String} balanceAvailable
 				,	balanceAvailable: this.wizard.options.profile.get('balance_available_formatted') || ''
 				, purchaseNumber: this.wizard.model.get('purchasenumber')
-				,	ispopayment: true
+				,	ispopayment: false
 			};
 		}
 	});

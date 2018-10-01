@@ -13,6 +13,8 @@ define(
 	,	'OrderWizard.Module.PaymentMethod.Invoice'
 	,	'OrderWizard.Module.PaymentMethod.PayPal'
 	,	'OrderWizard.Module.PaymentMethod.External'
+	, 'OrderWizard.Module.PaymentMethod.CheckMoneyOrder'
+	, 'OrderWizard.Module.PaymentMethod.PurchaseNumber'
 	,	'SC.Configuration'
 
 	,	'order_wizard_paymentmethod_selector_module.tpl'
@@ -26,6 +28,9 @@ define(
 	,	OrderWizardModulePaymentMethodInvoice
 	,	OrderWizardModulePaymentMethodPayPal
 	,	OrderWizardModulePaymentMethodExternal
+	, OrderWizardModulePaymentMethodCheckMoneyOrder
+	, OrderWizardModulePaymentMethodPurchaseNumber
+
 	,	Configuration
 
 	,	order_wizard_paymentmethod_selector_module_tpl
@@ -68,9 +73,15 @@ define(
 				,	options: {}
 				}
 			,	{
-					classModule: OrderWizardModulePaymentMethodInvoice
+					classModule: OrderWizardModulePaymentMethodPurchaseNumber
 				,	name: _('Purchase Order').translate()
-				,	type: 'invoice'
+				,	type: 'purchaseorder'
+				,	options: {}
+				}
+			,	{
+					classModule: OrderWizardModulePaymentMethodCheckMoneyOrder
+				,	name: _('Check/Money Order').translate()
+				,	type: 'checkmoneyorder'
 				,	options: {}
 				}
 			,	{
