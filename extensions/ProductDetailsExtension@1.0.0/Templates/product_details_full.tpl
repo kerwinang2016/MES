@@ -80,62 +80,62 @@
 
 				{{#if freeShippingLogo }}
 					<div class="product-logo">
-					<img src="http://mes.stairlifteshop.com/img/logo/free-ship-logo.jpg"/>
+					<img src="img/logo/free-ship-logo.jpg"/>
 					</div>
 				{{/if}}
 				{{#if noReturnsLogo }}
 					<div class="product-logo">
-					<img src="http://mes.stairlifteshop.com/img/logo/hygiene-product-logo.jpg"/>
+					<img src="img/logo/hygiene-product-logo.jpg"/>
 					</div>
 				{{/if}}
 				{{#if rxRequiredLogo }}
 					<div class="product-logo">
-					<img src="http://mes.stairlifteshop.com/img/logo/rx-required.jpg"/>
+					<img src="img/logo/rx-required.jpg"/>
 					</div>
 				{{/if}}
 				{{#if freeWhitegloveLogo }}
 				<div class="product-logo">
-				<img src="http://mes.stairlifteshop.com/img/logo/free-white-glove-delivery-icon.jpg"/>
+				<img src="img/logo/free-white-glove-delivery-icon.jpg"/>
 				</div>
 				{{/if}}
 				{{#if freeCurbsideLogo }}
 					<div class="product-logo">
-					<img src="http://mes.stairlifteshop.com/img/logo/free-curbside-delivery-logo.jpg"/>
+					<img src="img/logo/free-curbside-delivery-logo.jpg"/>
 					</div>
 				{{/if}}
 				{{#if bulkItemsLogo }}
 					<div class="product-logo">
-					<img src="http://mes.stairlifteshop.com/img/logo/bulk-items-logo.jpg"/>
+					<img src="img/logo/bulk-items-logo.jpg"/>
 					</div>
 				{{/if}}
 				{{#if freeLocalLogo }}
 					<div class="product-logo">
-					<img src="http://mes.stairlifteshop.com/img/logo/Free-local-delivery.jpg"/>
+					<img src="img/logo/Free-local-delivery.jpg"/>
 					</div>
 				{{/if}}
 				{{#if crashTestedLogo }}
 					<div class="product-logo">
-					<img src="http://mes.stairlifteshop.com/img/logo/Crash-tested-logo.jpg"/>
+					<img src="img/logo/Crash-tested-logo.jpg"/>
 					</div>
 				{{/if}}
 				{{#if adaCompliantLogo }}
 					<div class="product-logo">
-					<img src="http://mes.stairlifteshop.com/img/logo/Ada-compliant-logo.jpg"/>
+					<img src="img/logo/Ada-compliant-logo.jpg"/>
 					</div>
 				{{/if}}
 				{{#if insuranceEligibleLogo }}
 					<div class="product-logo">
-					<img src="http://mes.stairlifteshop.com/img/logo/Insurance-eligible-logo.jpg"/>
+					<img src="img/logo/Insurance-eligible-logo.jpg"/>
 					</div>
 				{{/if}}
 				{{#if sterileProductLogo }}
 					<div class="product-logo">
-					<img src="http://mes.stairlifteshop.com/img/logo/Sterile-product-logo.jpg"/>
+					<img src="img/logo/Sterile-product-logo.jpg"/>
 					</div>
 				{{/if}}
 				{{#if customProductLogo }}
 					<div class="product-logo">
-					<img src="http://mes.stairlifteshop.com/img/logo/custom-product-logo.jpg"/>
+					<img src="img/logo/custom-product-logo.jpg"/>
 					</div>
 				{{/if}}
 				{{#if callUsMsg }}

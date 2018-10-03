@@ -6,12 +6,12 @@
 }}
 
 <div>
-		<p>Please fill in <strong>Order Comments</strong>here.</p>
-		{{model.__customFieldsMetadata.custbodycustbody_message.label}}:		
-		<input type="text" name="custbodycustbody_message" value="{{model.options.custbodycustbody_message}}">
+		 <p>Enter order comments: </p>
+         <textarea name="custbody_message">
+         {{model.options.custbody_message}}
+         </textarea>
 </div>
-	
-	
+
 {{#if showWrapper}}
 <div class="{{wrapperClass}}">
 {{/if}}
@@ -25,5 +25,5 @@
 
 {{!----
 The context variables for this template are not currently documented. Use the {{log this}} helper to view the context variables in the Console of your browser's developer tools.
-model.options.custbodycustbody_message (String)
+model.options.custbody_message (String)
 ----}}
