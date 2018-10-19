@@ -490,6 +490,16 @@ define(
 				,	buyNowMsg: item_model.attributes.custitembunowmsg
 					//@property {String} productMessage
 				,	productMessage: item_model.attributes.custitem_product_msg
+					//@property {String} modelno
+				,	modelno: item_model.attributes.mpn
+					//@property {String} uom
+				,	uom: item_model.attributes.unitstype
+					//@property {String} upccode
+				,	upccode: item_model.attributes.upccode
+					//@property {String} gtin
+				,	gtin: item_model.attributes.custitem23
+					//@property {String} unspcs
+				,	unspcs: item_model.attributes.custitem25
 					//@property {String} itemUrl
 				,	itemUrl: item_model.get('_url') + this.model.getQuery()
 					//@property {Boolean} isItemProperlyConfigured

@@ -1,0 +1,10 @@
+{
+"gulp": {
+"templates": [
+"Templates/*"
+]
+}
+, "overrides": {
+"suitecommerce/LoginRegister@2.4.0/Templates/login_register_login.tpl": "Templates/login_register_login.tpl"
+}
+}

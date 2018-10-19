@@ -149,9 +149,56 @@
 					</div>
 				{{/if}}
 			</div>
+
 			<div class="productmsgresna">
 			{{{model.item.custitem_product_msg}}}
 			</div>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+	{{#if modelno }}
+	<div class="modelno">
+	<p>MPN/Model: {{model.item.mpn}}</p>
+	</div>			
+	{{/if}}
+	</td>
+    <td>
+	{{#if uom }}
+	<div class="uom">
+	<p>UOM: {{model.item.unitstype}}</p>
+	</div>			
+	{{/if}}
+	</td>
+  </tr>
+  <tr>
+    <td>
+	{{#if upccode }}
+	<div class="upccode">
+	<p>UPC: {{model.item.upccode}}</p>
+	</div>
+	{{/if}}	
+	</td>
+    <td>
+	{{#if gtin }}
+	<div class="gtin">
+	<p>GTIN: {{model.item.custitem23}}</p>
+	</div>			
+	{{/if}}		
+	</td>
+  </tr>
+  <tr>
+    <td>
+	{{#if unspcs }}
+	<div class="unspcs">
+	<p>UNSPCS: {{model.item.custitem25}}</p>
+	</div>			
+	{{/if}}
+	</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
 			</div>
 			</section>
 
@@ -230,4 +277,10 @@ Use the following context variables when customizing this template:
 	isItemProperlyConfigured (Boolean)
 	isPriceEnabled (Boolean)
 	custitem_product_msg (String)
+	mpn (String)
+	unitstype (String)
+	upccode (String)
+	custitem23 (String)
+	custitem25 (String)
 	----}}
+	

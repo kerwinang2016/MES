@@ -177,7 +177,9 @@
         "extensions/ProductViewsExtension": "1.0.0",
         "extensions/CartExtension": "1.0.0",
 		"extensions/Homepage": "mes",
-		"extensions/OrderWizardTermsAndConditions": "mes"
+		"extensions/OrderWizardTermsAndConditions": "mes",
+		"extensions/ReturnAuthorizationExtension": "mes",
+		"extensions/LoginRegisterExtension": "mes"
     },
     "tasksConfig": {
         "local": {

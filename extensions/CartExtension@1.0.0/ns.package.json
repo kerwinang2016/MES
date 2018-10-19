@@ -11,6 +11,7 @@
       "suitecommerce/Cart@4.3.0/JavaScript/Cart.AddToCart.Button.View.js":"JavaScript/Cart.AddToCart.Button.View.js",
       "suitecommerce/Cart@4.3.0/JavaScript/Cart.Item.Actions.View.js":"JavaScript/Cart.Item.Actions.View.js",
       "suitecommerce/Cart@4.3.0/Templates/cart_item_actions.tpl":"Templates/cart_item_actions.tpl",
-      "suitecommerce/Cart@4.3.0/Templates/cart_add_to_cart_button.tpl":"Templates/cart_add_to_cart_button.tpl"
+      "suitecommerce/Cart@4.3.0/Templates/cart_add_to_cart_button.tpl":"Templates/cart_add_to_cart_button.tpl",
+      "suitecommerce/Cart@4.3.0/Templates/cart_confirmation_modal.tpl":"Templates/cart_confirmation_modal.tpl" 
     }
 }
